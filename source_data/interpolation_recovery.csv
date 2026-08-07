@@ -1,0 +1,13 @@
+moment,model,cell_set,recovery_ratio
+delta_scalar,bilinear,all36,-0.308096
+delta_scalar,bilinear,inner16,-0.498897
+delta_scalar,bicubic,all36,-0.027168
+delta_scalar,bicubic,inner16,-0.082158
+J,bilinear,all36,0.095458
+J,bilinear,inner16,0.109196
+J,bicubic,all36,0.155206
+J,bicubic,inner16,0.173364
+spread,bilinear,all36,0.394459
+spread,bilinear,inner16,0.429218
+spread,bicubic,all36,0.487312
+spread,bicubic,inner16,0.532103

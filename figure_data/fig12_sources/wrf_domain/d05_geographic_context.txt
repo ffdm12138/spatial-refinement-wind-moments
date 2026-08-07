@@ -1,0 +1,8 @@
+d05_geographic_context.npz
+Derived 2026-08-07 from the archived WPS geogrid static field.
+Source file: geo_em.d05.nc (internal archive; not shipped publicly)
+Source SHA256: e252c7d162d16608d7473c1721d1535622f614c63ba6525165e2b0fce03c352b
+Variables: lat = XLAT_M[0] (float64), lon = XLONG_M[0] (float64),
+           hgt_geo = HGT_M[0] (float64) -- fallback terrain display
+Shape: (162, 162) each; registration audit qa/npj_round2/registration_audit.md
+PASS: identity orientation, zero cell offset vs HGT_d05.pt

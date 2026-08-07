@@ -1,0 +1,10 @@
+group,name,cell_rmse,cell_mae,cell_bias,cell_corr,cell_slope,scalar_rmse
+mean,zero_correction,0.375,0.322,-0.322,--,--,0.466
+mean,global_training_mean,0.198,0.156,-0.051,--,--,0.341
+mean,cell_mean_persistence,0.109,0.077,-0.051,0.868,0.69,0.298
+mean,terrain_roughness_equation,0.136,0.103,-0.051,0.762,0.50,0.309
+spread,global_training_mean,0.469,0.416,0.156,--,--,--
+spread,cell_mean_persistence,0.244,0.211,0.156,0.908,0.88,--
+spread,roughness_only,0.315,0.264,0.156,0.786,0.62,--
+spread,exposure_only,0.247,0.211,0.156,0.902,0.83,--
+spread,locked_joint_equation,0.247,0.212,0.156,0.902,0.83,--

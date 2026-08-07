@@ -1,0 +1,8 @@
+claim_id,claim,evidence_file
+C-N01,Evaluation-period scalar-increment RMSE of the bilinear and bicubic interpolation baselines (36 cell means),source_data/interpolation_metrics.csv
+C-N02,Evaluation-period within-parent spread RMSE of the interpolation baselines,source_data/interpolation_metrics.csv
+C-N03,"Domain-mean moment recovery ratios Q_delta, Q_J, Q_S for bilinear and bicubic (36 cells and inner 4x4)",source_data/interpolation_recovery.csv
+C-N04,Mean vector-preservation error and domain-mean delta_dyn of the interpolated fields,source_data/interpolation_metrics.csv
+C-N05,"Interpolation contract frozen before evaluation; synthetic tests, parent-centre alignment, edge extension, representative state, frozen-contract sha256",source_data/interpolation_contract.json
+C-N06,Time-varying paired block bootstrap of terrain vs bilinear/bicubic (scalar) and joint vs bilinear/bicubic (spread); interpolation predictions recomputed per replicate; code path validated against the sealed five pairs,source_data/interpolation_bootstrap.csv
+C-N07,"Information-source comparison across no fine-scale information, geometric interpolation, static terrain and fine-grid history",source_data/information_sources.csv
