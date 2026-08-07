@@ -2,8 +2,9 @@
 
 Style conventions are ported from the manuscript's companion figure style's
 ``scripts/benchmark_pipeline/style.py`` so that all figures render as
-one visual system: Times New Roman at ~8.4 pt, in-axes white-backed panel
-labels, clean spines, and a uniform colorbar helper.  The project colour
+one visual system: sans-serif (Arial with Liberation Sans/DejaVu Sans
+fallback) at ~8.4 pt, in-axes white-backed panel labels, clean spines,
+and a uniform colorbar helper.  The project colour
 palette and the four-format output (PDF/PNG/600-dpi TIFF + EPS via the
 caller's save wrapper; SVG dropped in the 2026-08-06 cleanup) are preserved.
 
@@ -36,11 +37,21 @@ import numpy as np
 import pandas as pd
 from matplotlib import font_manager
 
-# Use Times New Roman when installed; fall back to the metrically similar,
-# redistributable Liberation Serif on clean Linux builds. The selected font is
+# Sans-serif suite per Nature Portfolio figure guidance: Arial when
+# installed, falling back to the metric-compatible Liberation Sans and the
+# redistributable DejaVu Sans on clean Linux builds. The selected font is
 # embedded in vector outputs; no font file is included in the package.
 _AVAILABLE_FONTS = {f.name for f in font_manager.fontManager.ttflist}
-PUBLICATION_FONT = "Times New Roman" if "Times New Roman" in _AVAILABLE_FONTS else "Liberation Serif"
+
+
+def _select_sans_font() -> str:
+    for name in ("Arial", "Liberation Sans", "DejaVu Sans"):
+        if name in _AVAILABLE_FONTS:
+            return name
+    return "DejaVu Sans"
+
+
+PUBLICATION_FONT = _select_sans_font()
 
 # Publication palette (stable across the figure suite).
 BLUE = "#2c5d87"
@@ -72,7 +83,7 @@ def _base_rc() -> dict:
         "font.family": [PUBLICATION_FONT],
         "font.serif": [PUBLICATION_FONT],
         "font.sans-serif": [PUBLICATION_FONT],
-        "mathtext.fontset": "stix",
+        "mathtext.fontset": "dejavusans",
         "pdf.fonttype": 42,  # embed TrueType outlines, never Type 3
         "ps.fonttype": 42,
         "font.size": 8.4,
@@ -202,7 +213,8 @@ def tint(hex_color: str, frac: float = 0.8) -> str:
 
 
 def spatial_map(ax, values6x6, title, cmap, vmin, vmax, label, annot="extrema",
-                cbar_fraction=0.046, cbar_pad=0.02):
+                cbar_fraction=0.046, cbar_pad=0.02,
+                show_xlabel=True, show_ylabel=True):
     """6x6 parent-cell heat map; annot='extrema' marks only the largest and
     smallest cells, annot=None removes all value text."""
     m = np.asarray(values6x6, float).reshape(6, 6)
@@ -210,8 +222,10 @@ def spatial_map(ax, values6x6, title, cmap, vmin, vmax, label, annot="extrema",
     ax.set_xticks(range(6))
     ax.set_yticks(range(6))
     ax.tick_params(length=0)
-    ax.set_xlabel("Column")
-    ax.set_ylabel("Row")
+    if show_xlabel:
+        ax.set_xlabel("Column")
+    if show_ylabel:
+        ax.set_ylabel("Row")
     ax.set_title(title, pad=3.5)
     for r in range(6):
         for c in range(6):
@@ -226,10 +240,14 @@ def spatial_map(ax, values6x6, title, cmap, vmin, vmax, label, annot="extrema",
             # inside the map and give every value a contrasting outline
             dx = 0.30 if c == 0 else (-0.30 if c == 5 else 0.0)
             tcol = "white" if abs(v) > 0.5 * max(abs(vmin), abs(vmax), 1e-9) else INK
-            ax.text(c + dx, r, f"{v:.2f}", ha="center", va="center",
-                    fontsize=8.0, color=tcol, zorder=4,
-                    path_effects=[pe.withStroke(linewidth=1.2,
-                                                foreground=INK if tcol == "white" else "white")])
+            t = ax.text(c + dx, r, f"{v:.2f}", ha="center", va="center",
+                        fontsize=8.0, color=tcol, zorder=4,
+                        path_effects=[pe.withStroke(linewidth=1.2,
+                                                    foreground=INK if tcol == "white" else "white")])
+            # intentional edge-column label (may reach a few px past the
+            # axes window into the inter-panel gap; the layout guard
+            # allowlists it by this gid)
+            t.set_gid("npj-spatial-extrema")
     add_shared_colorbar(ax.figure, im, ax, label,
                         fraction=cbar_fraction, pad=cbar_pad)
     return im

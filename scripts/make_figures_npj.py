@@ -37,6 +37,7 @@ import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import matplotlib.text as mtext
 import numpy as np
 import pandas as pd
 
@@ -109,14 +110,23 @@ def _finite(*arrays, ctx: str = "") -> None:
 
 
 def _assert_figure_layout(fig, stem: str) -> None:
-    """QA-C: no text/legend artist may fall outside the figure canvas, the
-    tight bbox must stay within 1.25x the nominal figure height, and the
-    Fig.6 tight bbox aspect (width/height) must stay in [0.70, 1.30]. This
-    catches out-of-range transAxes group labels inflated by bbox_inches."""
+    """QA-C geometry guard (2026-08-08 display-items round):
+    1. every text/legend artist must fall inside the figure canvas;
+    2. every ax.text must stay inside its own axes window unless it is an
+       in-axes panel label (axes-fraction anchor with 0<=x<=1, 0<=y<=1) —
+       this catches data-coordinate text that renders into a neighbouring
+       panel or the inter-panel gap (e.g. the old "100% = exact recovery"
+       anchor at (1.5, 102.0) outside ylim(0, 55));
+    3. the tight bbox must stay within 1.25x the nominal figure height, and
+       the Fig.6 tight bbox aspect (width/height) must stay in [0.70, 1.30].
+    Titles, axis labels, colourbar labels and legends are exempt from check 2
+    by construction (they live outside the axes window); legends are covered
+    by check 1."""
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
     win = fig.get_window_extent(renderer)
     margin = 0.1 * fig.dpi
+    ax_margin = 0.02 * fig.dpi
     for ax in fig.axes:
         artists: list = list(ax.texts)
         leg = ax.get_legend()
@@ -129,6 +139,42 @@ def _assert_figure_layout(fig, stem: str) -> None:
                 raise AssertionError(
                     f"text/legend artist outside figure canvas in {stem}: "
                     f"{getattr(t, 'get_text', lambda: '?')()!r}")
+    for ax in fig.axes:
+        if not ax.get_visible():
+            continue
+        ax_bb = ax.get_window_extent(renderer)
+        for t in ax.texts:
+            # leader-line annotations: judge the text bbox itself, not the
+            # envelope that includes the arrow
+            if isinstance(t, mtext.Annotation) and t.arrow_patch is not None:
+                bp = t.get_bbox_patch()
+                bb = (bp.get_window_extent(renderer) if bp is not None
+                      else t.get_window_extent(renderer))
+            else:
+                bb = t.get_window_extent(renderer)
+            inside = (bb.x0 >= ax_bb.x0 - ax_margin
+                      and bb.x1 <= ax_bb.x1 + ax_margin
+                      and bb.y0 >= ax_bb.y0 - ax_margin
+                      and bb.y1 <= ax_bb.y1 + ax_margin)
+            if inside:
+                continue
+            # allowlist 1: intentional edge-column spatial-map extrema
+            # labels (figstyle.spatial_map), which may reach a few px past
+            # the axes window into the inter-panel gap
+            if t.get_gid() == "npj-spatial-extrema":
+                continue
+            # allowlist 2: in-axes panel labels anchored in axes-fraction
+            # coordinates (figstyle.panel_label convention)
+            try:
+                x, y = t.get_position()
+                if t.get_transform() == ax.transAxes and 0.0 <= x <= 1.0 \
+                        and 0.0 <= y <= 1.0:
+                    continue
+            except Exception:
+                pass
+            raise AssertionError(
+                f"text artist outside its axes window in {stem}: "
+                f"{t.get_text()!r} bbox {bb}")
     tight_bbox = fig.get_tightbbox(renderer)
     h0, w0 = fig.get_size_inches()
     if tight_bbox.height > 1.25 * h0 * fig.dpi:
@@ -184,17 +230,48 @@ def fig1() -> None:
                                              n_per_edge=12)
         ax.plot(lon, lat, color=col, lw=1.2, transform=ccrs.PlateCarree(),
                 zorder=5)
-        # label just outside the top-left corner of each box (same placement
-        # rule as draw_domain_box): nested labels never overlap
-        bx = d.x0 - 0.02 * (d.x1 - d.x0)
-        by = d.y1 + 0.02 * (d.y1 - d.y0)
-        blon, blat = pdom.xy_to_lonlat(np.array([bx]), np.array([by]),
-                                       inv, ref_x_proj, ref_y_proj)
-        ax.text(float(blon[0]), float(blat[0]), d.label, color=col,
-                fontsize=8.6, fontweight="bold", ha="right", va="bottom",
-                transform=ccrs.PlateCarree(), zorder=6,
-                bbox=dict(boxstyle="round,pad=0.15", facecolor="white",
-                          edgecolor=col, linewidth=0.7))
+        # label placement per domain (2026-08-08 layout audit):
+        # d01 -- inside the top-left corner (its top-left-outside anchor sits
+        #        at the top edge of the axes window, pushing the label out);
+        # d02, d03 -- outside the top-left corner;
+        # d04, d05 -- in distant white space with leader lines (at ~18 px per
+        #        degree the nested d03/d04/d05 top-left anchors are only a
+        #        few px apart, so any adjacent label position overlaps)
+        if d.label == "d01":
+            bx = d.x0 + 0.05 * (d.x1 - d.x0)
+            by = d.y1 - 0.08 * (d.y1 - d.y0)
+            blon, blat = pdom.xy_to_lonlat(np.array([bx]), np.array([by]),
+                                           inv, ref_x_proj, ref_y_proj)
+            ax.text(float(blon[0]), float(blat[0]), d.label, color=col,
+                    fontsize=8.6, fontweight="bold", ha="left", va="top",
+                    transform=ccrs.PlateCarree(), zorder=6,
+                    bbox=dict(boxstyle="round,pad=0.15", facecolor="white",
+                              edgecolor=col, linewidth=0.7))
+        elif d.label in ("d04", "d05"):
+            if d.label == "d04":
+                txt_lon, txt_lat = 107.5, 43.0
+                tip_lon, tip_lat = 100.68, 38.27  # d04 top-right corner
+            else:
+                txt_lon, txt_lat = 106.5, 44.5
+                tip_lon, tip_lat = 100.23, 38.10  # d05 top-left corner
+            ax.annotate(d.label, xy=(tip_lon, tip_lat), xytext=(txt_lon, txt_lat),
+                        fontsize=8.6, fontweight="bold", color=col,
+                        ha="left", va="top", transform=ccrs.PlateCarree(),
+                        zorder=6,
+                        arrowprops=dict(arrowstyle="-", color=col, lw=0.9,
+                                        linestyle=(0, (3, 2))),
+                        bbox=dict(boxstyle="round,pad=0.15", facecolor="white",
+                                  edgecolor=col, linewidth=0.7))
+        else:
+            bx = d.x0 - 0.02 * (d.x1 - d.x0)
+            by = d.y1 + 0.02 * (d.y1 - d.y0)
+            blon, blat = pdom.xy_to_lonlat(np.array([bx]), np.array([by]),
+                                           inv, ref_x_proj, ref_y_proj)
+            ax.text(float(blon[0]), float(blat[0]), d.label, color=col,
+                    fontsize=8.6, fontweight="bold", ha="right", va="bottom",
+                    transform=ccrs.PlateCarree(), zorder=6,
+                    bbox=dict(boxstyle="round,pad=0.15", facecolor="white",
+                              edgecolor=col, linewidth=0.7))
     d01 = domains[0]
     corners = pdom.domain_corners_lonlat(d01, inv, ref_x_proj, ref_y_proj)
     lons = [c[0] for c in corners]
@@ -218,16 +295,16 @@ def fig1() -> None:
         raise AssertionError("d05 geographic context does not match HGT_d05.pt")
     axb = fig.add_subplot(gs[0, 1])
     figstyle.clean_axis(axb)
-    im = axb.pcolormesh(lon, lat, hgt, cmap="terrain_r", shading="auto",
+    im = axb.pcolormesh(lon, lat, hgt, cmap="cividis", shading="auto",
                         vmin=float(np.nanpercentile(hgt, 2)),
                         vmax=float(np.nanpercentile(hgt, 98)))
     dlon = lon[0, 1] - lon[0, 0]
     dlat = lat[1, 0] - lat[0, 0]
     parent_edges = np.arange(0, 163, 27) - 0.5
     for e in parent_edges:
-        axb.axvline(lon[0, 0] + e * dlon, color=INK, lw=0.7, alpha=1.0,
+        axb.axvline(lon[0, 0] + e * dlon, color=INK, lw=0.6, alpha=0.55,
                     zorder=3)
-        axb.axhline(lat[0, 0] + e * dlat, color=INK, lw=0.7, alpha=1.0,
+        axb.axhline(lat[0, 0] + e * dlat, color=INK, lw=0.6, alpha=0.55,
                     zorder=3)
     for (r, c) in [(4, 4), (5, 1), (0, 1)]:
         x0 = lon[27 * r, 27 * c]
@@ -235,12 +312,18 @@ def fig1() -> None:
         axb.add_patch(plt.Rectangle((x0, y0), 27 * dlon, 27 * dlat, fill=False,
                                     edgecolor=RED if (r, c) in ((4, 4), (5, 1)) else BLUE,
                                     lw=1.6, zorder=4))
-    axb.text(lon[27 * 4, 27 * 4], lat[135, 27 * 4], "(4,4)",
-             color=RED, fontsize=7.6, ha="center", va="bottom", zorder=5)
-    axb.text(lon[135, 27 * 1], lat[161, 27 * 1], "(5,1)",
-             color=RED, fontsize=7.6, ha="center", va="bottom", zorder=5)
-    axb.text(lon[0, 27 * 1], lat[0, 27 * 1] - 1.5 * dlat, "(0,1)",
-             color=BLUE, fontsize=7.6, ha="center", va="top", zorder=5)
+    axb.text(lon[27 * 4 + 13, 27 * 4 + 13], lat[27 * 4 + 13, 27 * 4 + 13],
+             "(4,4)", color=RED, fontsize=7.6, ha="center", va="center",
+             zorder=5, bbox={"facecolor": "white", "edgecolor": "none",
+                             "pad": 0.5})
+    axb.text(lon[27 * 5 + 13, 27 * 1 + 13], lat[27 * 5 + 13, 27 * 1 + 13],
+             "(5,1)", color=RED, fontsize=7.6, ha="center", va="center",
+             zorder=5, bbox={"facecolor": "white", "edgecolor": "none",
+                             "pad": 0.5})
+    axb.text(lon[27 * 0 + 13, 27 * 1 + 13], lat[27 * 0 + 13, 27 * 1 + 13],
+             "(0,1)", color=BLUE, fontsize=7.6, ha="center", va="center",
+             zorder=5, bbox={"facecolor": "white", "edgecolor": "none",
+                             "pad": 0.5})
     figstyle.add_shared_colorbar(fig, im, axb, "d05 terrain height (m)",
                                  fraction=0.05, pad=0.03)
     axb.set_title("d05 terrain, 6×6 parent grid", pad=3.5)
@@ -255,10 +338,13 @@ def fig1() -> None:
              ha="center", va="center", fontsize=8.2, zorder=4)
     axc.text(3015, 0, "final 670\n(evaluation)", color="white", ha="center",
              va="center", fontsize=8.2, zorder=4)
-    axc.text(3350, 0.6, "3,350 one-minute states", color=INK, fontsize=8.0,
+    axc.text(3350, 0.22, "3,350 one-minute states", color=INK, fontsize=8.0,
              ha="right", va="bottom")
     axc.set_yticks([])
-    axc.set_xlim(0, 3350)
+    # right margin of ~250 states so the two-line in-bar label of the final
+    # 670-state segment stays inside the panel (2026-08-08 layout audit)
+    axc.set_xlim(0, 3600)
+    axc.set_ylim(-0.30, 0.30)
     axc.set_xticks([0, 2680, 3350])
     axc.set_xticklabels(["0", "2,680", "3,350"])
     axc.set_xlabel("Cumulative retained states (1-min cadence)")
@@ -274,24 +360,27 @@ def fig1() -> None:
     axd.set_ylim(0, 10)
     axd.set_title("Information sources for two missing moments", pad=3.5)
     xc = [1.30, 3.75, 6.25, 8.70]
-    headers = ["Global reference\n(no cell-specific\npredictor)",
-               "Instantaneous\ncoarse-field\ngeometry",
-               "Static terrain\n+ global\ncoefficients",
-               "Cell-specific\nfine-grid\nhistory"]
+    # short in-panel labels; the full names are spelled out in the caption
+    # (2026-08-08 display-items round: the 3-line headers and the long
+    # method lines overflowed the panel columns)
+    headers = ["Global\nreference",
+               "Coarse\ngeometry",
+               "Static\nterrain",
+               "Fine-grid\nhistory"]
     classes = ["no fine-scale information", "geometric interpolation",
                "static terrain", "fine-grid history"]
-    methods = ["zero correction,\nglobal calibration mean",
+    methods = ["zero,\nglobal mean",
                "bilinear,\nbicubic",
                "roughness,\nexposure",
-               "same-cell\nhistorical mean"]
+               "historical\nmean"]
     for x, head, cl, meth in zip(xc, headers, classes, methods):
         axd.text(x, 8.55, head, ha="center", va="center", fontsize=7.9,
                  fontweight="bold", color=INK,
-                 bbox=dict(boxstyle="round,pad=0.32", facecolor=tint(CLASS_COLOR[cl], 0.84),
+                 bbox=dict(boxstyle="square,pad=0.28", facecolor=tint(CLASS_COLOR[cl], 0.84),
                            edgecolor=CLASS_COLOR[cl], linewidth=0.9))
         axd.text(x, 6.15, meth, ha="center", va="center", fontsize=7.6,
                  color=INK,
-                 bbox=dict(boxstyle="round,pad=0.30", facecolor="white",
+                 bbox=dict(boxstyle="square,pad=0.26", facecolor="white",
                            edgecolor=GREY, linewidth=0.7))
         axd.annotate("", xy=(x, 3.55), xytext=(x, 5.15),
                      arrowprops=dict(arrowstyle="-|>", color=GREY, lw=1.0,
@@ -301,7 +390,7 @@ def fig1() -> None:
     for x, lab in [(3.3, "scalar increment"), (6.7, "within-parent spread")]:
         axd.text(x, 1.45, lab, ha="center", va="center", fontsize=8.0,
                  color=INK,
-                 bbox=dict(boxstyle="round,pad=0.30", facecolor=tint(LIGHT, 0.5),
+                 bbox=dict(boxstyle="square,pad=0.26", facecolor=tint(LIGHT, 0.5),
                            edgecolor=INK, linewidth=0.8))
     figstyle.panel_label(axd, "d")
     _save_fig(fig, "Fig1_study_design")
@@ -356,10 +445,10 @@ def _concept_panel_v2(ax) -> None:
              color=BLUE, fontsize=9.0, ha="center", va="top", zorder=6)
     axc.text(1.03, cy + sbar * np.sin(theta), r"$\bar{s}$", color=TEAL,
              fontsize=9.0, ha="left", va="center", zorder=6)
-    axc.text(0.5, -0.12, "fine vectors of one 3-km parent cell", color=GREY,
+    axc.text(0.5, -0.06, "fine vectors of one 3-km parent cell", color=GREY,
              fontsize=8.0, ha="center", va="top")
     axc.set_xlim(-0.06, 1.12)
-    axc.set_ylim(-0.15, 1.05)
+    axc.set_ylim(-0.35, 1.05)
     axc.set_aspect("equal")
     # arrows from the cell down to the two estimand boxes
     ax.annotate("", xy=(0.30, 0.50), xytext=(0.30, 0.565),
@@ -411,7 +500,7 @@ def fig2() -> None:
                           hspace=0.75, wspace=0.38)
     axa = fig.add_subplot(gs[:, 0:2])
     _concept_panel_v2(axa)
-    figstyle.panel_label(axa, "a", y=1.02)
+    figstyle.panel_label(axa, "a")
 
     axb = fig.add_subplot(gs[0, 2])
     axc = fig.add_subplot(gs[0, 3])
@@ -426,8 +515,11 @@ def fig2() -> None:
                  0.0, 0.65, r"$\Delta_{\rm scalar}$ (m s$^{-1}$)", "d"),
             ]):
         figstyle.clean_axis(ax)
+        # inner-column panels drop the duplicated Row/Column labels; only
+        # the leftmost column keeps "Row" and the bottom row keeps "Column"
         spatial_map(ax, df[key], title, cmap, vmin, vmax, label,
-                    cbar_fraction=0.050, cbar_pad=0.02)
+                    cbar_fraction=0.050, cbar_pad=0.02,
+                    show_xlabel=(panel == "d"), show_ylabel=(panel == "b"))
         figstyle.panel_label(ax, panel, x=0.985, ha="right")
 
     axe = fig.add_subplot(gs[1, 2:4])
@@ -445,7 +537,9 @@ def fig2() -> None:
                  ha="left" if value >= 0 else "right", fontsize=8.2, color=INK)
     axe.axvline(0, color="black", lw=0.5, zorder=2)
     axe.set_yticks(ypos, names)
-    axe.set_xlim(-0.06, 0.335)
+    # x range widened so the 6-char value labels (+-0.004 ... +0.275) stay
+    # inside the panel (2026-08-08 layout audit)
+    axe.set_xlim(-0.12, 0.40)
     axe.set_xlabel("Domain mean (m s$^{-1}$)")
     axe.set_title("Exact decomposition", pad=3.5)
     axe.text(0.30, 0.08, r"$\Delta_{\rm scalar} = \Delta_{\rm dyn} + J$",
@@ -474,11 +568,14 @@ def fig2() -> None:
     axf.set_xticklabels(["111", "333", "1000", "3000"])
     axf.set_xlabel("Aggregation scale (m)")
     axf.set_ylabel(r"Median within-parent spread (m s$^{-1}$)")
+    # explicit x range so the value label above the leftmost point stays
+    # inside the panel (2026-08-08 layout audit)
+    axf.set_xlim(-0.35, 3.35)
     axf.set_ylim(0, 1.05)
     axf.set_title("Scale dependence", pad=3.5)
-    axf.text(0.03, 0.05, "mean scalar speed: "
+    axf.text(0.03, 0.05, "mean scalar speed:\n"
              f"{med_speed[0]:.2f} → {med_speed[-1]:.2f} m s$^{{-1}}$",
-             transform=axf.transAxes, fontsize=7.6, color=INK)
+             transform=axf.transAxes, fontsize=7.4, color=INK)
     figstyle.panel_label(axf, "f")
     _save_fig(fig, "Fig2_coarse_graining_loss")
 
@@ -570,9 +667,9 @@ def fig3() -> None:
     share_ev = float(g.loc[(g.period == "eval") & (g.wind_group == "below"),
                            "n_cell_time_records"].iloc[0]) / n_ev
     ax.text(0.5, 0.035,
-            f"below 1.5 m s$^{{-1}}$: {share_tr * 100:.0f}% of calibration, "
+            f"below 1.5 m s$^{{-1}}$: {share_tr * 100:.0f}% of calibration\n"
             f"{share_ev * 100:.0f}% of evaluation records",
-            transform=ax.transAxes, ha="center", va="bottom", fontsize=7.4,
+            transform=ax.transAxes, ha="center", va="bottom", fontsize=7.2,
             color=GREY)
     figstyle.panel_label(ax, "c")
 
@@ -582,7 +679,7 @@ def fig3() -> None:
                 r"Across-wind share $\sigma_\perp^2/{\rm tr}\,\mathbf{C}$",
                 "viridis", 0.0, 0.7, r"$\sigma_\perp^2/{\rm tr}\,\mathbf{C}$",
                 annot="extrema", cbar_fraction=0.050, cbar_pad=0.02)
-    figstyle.panel_label(ax, "d", x=0.985, ha="right")
+    figstyle.panel_label(ax, "d")
     _save_fig(fig, "Fig3_jensen_covariance")
 
 
@@ -594,12 +691,16 @@ def fig4() -> None:
     f06 = read("F06_chronological_evaluation.csv")
     rec = read_npj("interpolation_recovery.csv")
     met = read_npj("interpolation_metrics.csv")
-    src = read_npj("information_sources.csv")
     npz = np.load(NPJ / "representative_state_fields.npz")
 
-    fig = plt.figure(figsize=(figstyle.MAIN_WIDTH_IN, 6.0))
-    gs = fig.add_gridspec(3, 3, height_ratios=[1.16, 1.0, 1.0],
-                          hspace=0.62, wspace=0.40)
+    # three-row layout (2026-08-08 display-items round): fields / parities /
+    # recovery ratios; the per-method RMSE panel duplicated Fig. 6(e) and
+    # was removed
+    fig = plt.figure(figsize=(figstyle.MAIN_WIDTH_IN, 6.2))
+    gs = fig.add_gridspec(3, 2, height_ratios=[1.16, 1.0, 1.0],
+                          hspace=0.62, wspace=0.42)
+    sub = gs[0, :].subgridspec(1, 5, width_ratios=[1.0, 1.0, 1.0, 1.0, 0.07],
+                               wspace=0.04)
 
     # (a) representative state: four real fields on a shared colour scale
     s05 = npz["d05_speed"].astype(float)
@@ -610,8 +711,6 @@ def fig4() -> None:
         ("bicubic", npz["bicubic_speed"].astype(float), False),
         ("d05 reference", s05, False),
     ]
-    sub = gs[0, :].subgridspec(1, 5, width_ratios=[1.0, 1.0, 1.0, 1.0, 0.07],
-                               wspace=0.04)
     axes_a = []
     for k, (title, fld, is6) in enumerate(fields):
         _finite(fld, ctx=f"fig4a-{k}")
@@ -637,7 +736,7 @@ def fig4() -> None:
     cax.set_axis_off()
     figstyle.add_shared_colorbar(fig, im, cax, "wind speed (m s$^{-1}$)",
                                  fraction=1.0, pad=0.02)
-    figstyle.panel_label(axes_a[0], "a", x=0.015, y=1.10)
+    figstyle.panel_label(axes_a[0], "a")
 
     # (b) scalar-increment parity (bilinear, bicubic)
     ax = fig.add_subplot(gs[1, 0])
@@ -672,7 +771,7 @@ def fig4() -> None:
     figstyle.panel_label(ax, "c")
 
     # (d) Jensen recovery Q_J in percent
-    ax = fig.add_subplot(gs[1, 2])
+    ax = fig.add_subplot(gs[2, 0])
     figstyle.clean_axis(ax)
     qj = rec[rec.moment == "J"]
     models = ["bilinear", "bicubic"]
@@ -687,9 +786,10 @@ def fig4() -> None:
                else "inner 16")
         for xi, v in zip(x + (k - 0.5) * w, vals):
             ax.text(xi, v + 1.0, f"{v:.1f}", ha="center", fontsize=7.2)
-    ax.axhline(100.0, color=INK, ls="--", lw=0.9)
-    ax.text(1.5, 102.0, "100% = exact recovery", fontsize=7.2, color=INK,
-            ha="right")
+    # exact-recovery reference line is visible in panel (e) whose y range
+    # contains 100%; here the annotation sits inside the panel (2026-08-08)
+    ax.text(0.98, 0.98, "100% = exact recovery", transform=ax.transAxes,
+            fontsize=7.2, color=INK, ha="right", va="top")
     ax.set_xticks(x)
     ax.set_xticklabels(["bilinear", "bicubic"])
     ax.set_ylabel("Jensen moment recovery (%)")
@@ -700,7 +800,7 @@ def fig4() -> None:
 
     # (e) moment recovery Q_delta, Q_S in percent + vector-preservation
     # diagnostics for BOTH kernels
-    ax = fig.add_subplot(gs[2, 0])
+    ax = fig.add_subplot(gs[2, 1])
     figstyle.clean_axis(ax)
     moments = [("delta_scalar", r"$Q_{\Delta}$"), ("spread", r"$Q_S$")]
     x = np.arange(2)
@@ -719,58 +819,10 @@ def fig4() -> None:
     ax.set_ylabel("Domain-mean moment recovery (%)")
     ax.set_ylim(-70, 115)
     ax.set_title("Moment recovery ratios", pad=3.5)
-    # mini table: vector-preservation diagnostics of both kernels (m s^-1)
-    tb = ax.table(
-        cellText=[["0.444", "0.250"], ["−0.130", "−0.059"]],
-        rowLabels=[r"$E_{\rm vec}$", r"$\overline{\Delta}_{\rm dyn}^I$"],
-        colLabels=["Bilinear", "Bicubic"],
-        cellLoc="center", loc="upper center",
-        bbox=[0.02, 0.74, 0.96, 0.24])
-    tb.auto_set_font_size(False)
-    tb.set_fontsize(6.8)
-    for (r, c), cell in tb.get_celld().items():
-        cell.set_facecolor("white")
-        cell.set_edgecolor(GREY)
-        cell.set_linewidth(0.4)
-    ax.text(0.5, 0.71, "(m s$^{-1}$)", transform=ax.transAxes,
-            ha="center", fontsize=6.8, color=GREY)
+    # embedded mini-table removed in the 2026-08-08 display-items round;
+    # E_vec and Delta_dyn^I are reported in the Results text and the
+    # Fig. 4 caption
     figstyle.panel_label(ax, "e")
-
-    # (f) period-mean RMSE dot plot: methods on y ticks, no labels in the
-    # panel, group headers, blank row between the moments
-    ax = fig.add_subplot(gs[2, 1:])
-    figstyle.clean_axis(ax)
-    order_s = ["zero_correction", "global_training_mean", "bilinear", "bicubic",
-               "terrain_roughness_equation", "cell_mean_persistence"]
-    order_p = ["global_training_mean", "bilinear", "bicubic", "roughness_only",
-               "exposure_only", "locked_joint_equation", "cell_mean_persistence"]
-    ypos, labels, rows = [], [], []
-    for group, order, lab in [("scalar_increment", order_s, "scalar increment"),
-                              ("spread", order_p, "within-parent spread")]:
-        d = src[src.group == group].set_index("method").loc[order]
-        for mname, r in d.iterrows():
-            rows.append((lab, mname, r))
-    n = len(rows)
-    y = np.arange(n, dtype=float)
-    y[np.asarray([lab for lab, _, _ in rows]) == "within-parent spread"] += 0.7
-    for k, (lab, mname, r) in enumerate(rows):
-        _finite(r.rmse, ctx="fig4f")
-        ax.scatter(r.rmse, y[k], s=24, color=METHOD_COLOR[mname], zorder=3)
-        labels.append(METHOD_LABEL[mname])
-    gap_y = float(y[np.asarray([lab for lab, _, _ in rows]) == "within-parent spread"][0]) - 0.4
-    ax.axhline(gap_y, color=LIGHT, lw=1.0, zorder=1)
-    ax.text(-0.012, 5.75, "scalar increment", transform=ax.get_yaxis_transform(),
-            fontsize=7.6, fontweight="bold", color=INK, ha="right", va="bottom")
-    ax.text(-0.012, 12.85, "within-parent spread",
-            transform=ax.get_yaxis_transform(), fontsize=7.6, fontweight="bold",
-            color=INK, ha="right", va="bottom")
-    ax.axvline(0, color=INK, lw=0.6)
-    ax.set_yticks(y, labels)
-    ax.tick_params(axis="y", labelsize=7.4)
-    ax.set_xlabel("Period-mean RMSE (m s$^{-1}$)")
-    ax.set_title("Moment RMSE by method", pad=3.5)
-    ax.set_xlim(-0.02, 0.66)
-    figstyle.panel_label(ax, "f")
     _save_fig(fig, "Fig4_geometric_refinement")
 
 
@@ -781,7 +833,6 @@ def fig4() -> None:
 def fig5() -> None:
     f56 = read("F05_F06_terrain_parameterization.csv")
     j2 = read("F04_jensen_second_order.csv")
-    f03 = read("F03_physical_decomposition.csv")
     cc = read("F05_case_cells.csv")
     strat = read_evid("state_stratified_terrain.csv")
     mc = pd.read_csv(SNAP / "outputs_evaluation_holdout_model_cells.csv")
@@ -818,15 +869,9 @@ def fig5() -> None:
     ax.set_title("Roughness and Jensen gap", pad=3.5)
     ax.text(0.97, 0.06, r"$R^2=0.671$", transform=ax.transAxes, ha="right",
             fontsize=7.8, color=INK)
-    axi = ax.inset_axes([0.60, 0.08, 0.37, 0.33])
-    figstyle.clean_axis(axi)
-    axi.set_facecolor("white")
-    axi.set_zorder(6)
-    axi.scatter(d56.mean_roughness, f03.sort_values("cell_id").delta_dynamic_mean,
-                s=9, color=GREY, zorder=3)
-    axi.set_title(r"$\Delta_{\rm dyn}$ ($R^2=0.016$)", fontsize=7.0, pad=2)
-    axi.set_xlabel(r"$r_\sigma$", fontsize=7.2)
-    axi.tick_params(labelsize=6.8)
+    # flat-delta_dyn inset removed in the 2026-08-08 display-items round;
+    # the near-vanishing delta_dyn association (R^2 = 0.016) is reported in
+    # the text and the Fig. 5 caption
     figstyle.panel_label(ax, "b")
 
     # (c) spread vs isotropic exposure; the fit line is drawn from explicit
@@ -870,7 +915,10 @@ def fig5() -> None:
         h = sub.hgt_rel.values.reshape(27, 27)
         sp = sub.speed_mean.values.reshape(27, 27)
         _finite(h, sp, ctx=f"fig5de-{case_id}")
-        im = ax.imshow(h, origin="lower", cmap="terrain_r", vmin=cmin, vmax=cmax)
+        # hgt_rel is a signed anomaly about the parent-cell mean: zero-centred
+        # diverging scale (2026-08-08 scientific-label fix)
+        clim = max(abs(cmin), abs(cmax))
+        im = ax.imshow(h, origin="lower", cmap="RdBu_r", vmin=-clim, vmax=clim)
         ax.contour(sp, levels=levels, colors="white", linewidths=0.5, alpha=1.0)
         ax.set_xticks([])
         ax.set_yticks([])
@@ -878,7 +926,7 @@ def fig5() -> None:
                      pad=2.5)
     axes[1, 0].set_ylabel("fine cell")
     fig.colorbar(im, ax=[axes[1, 0], axes[1, 1]], fraction=0.05, pad=0.04,
-                 aspect=24).set_label("terrain height (m)")
+                 aspect=24).set_label("relative terrain height (m)")
     figstyle.panel_label(axes[1, 0], "d")
     figstyle.panel_label(axes[1, 1], "e")
 
@@ -922,11 +970,19 @@ def fig6() -> None:
     src = read_npj("information_sources.csv")
     boot = read_npj("interpolation_bootstrap.csv")
 
-    fig, axes = plt.subplots(2, 3, figsize=(figstyle.MAIN_WIDTH_IN, 5.8))
-    fig.subplots_adjust(wspace=0.44, hspace=0.72)
+    # three-row layout (2026-08-08 display-items round): state+parities /
+    # RMSE diagnostics / full-width paired bootstrap forest
+    fig = plt.figure(figsize=(figstyle.MAIN_WIDTH_IN, 6.6))
+    gs = fig.add_gridspec(3, 3, height_ratios=[1.0, 1.0, 1.0],
+                          hspace=0.62, wspace=0.42)
+    axa = fig.add_subplot(gs[0, 0])
+    axb = fig.add_subplot(gs[0, 1])
+    axc = fig.add_subplot(gs[0, 2])
+    axd = fig.add_subplot(gs[1, 0])
+    axe = fig.add_subplot(gs[1, 1])
 
     # (a) wind-state sector bars
-    ax = axes[0, 0]
+    ax = axa
     figstyle.clean_axis(ax)
     sectors = np.arange(8)
     tr = ws[ws.period == "training"]
@@ -946,7 +1002,7 @@ def fig6() -> None:
     figstyle.panel_label(ax, "a")
 
     # (b) scalar parity: bilinear, bicubic, terrain
-    ax = axes[0, 1]
+    ax = axb
     figstyle.clean_axis(ax)
     ax.scatter(f06.obs_scalar, f06.pred_scalar, s=13, color=BLUE, zorder=3,
                label="terrain")
@@ -965,7 +1021,7 @@ def fig6() -> None:
     figstyle.panel_label(ax, "b")
 
     # (c) spread parity
-    ax = axes[0, 2]
+    ax = axc
     figstyle.clean_axis(ax)
     ax.scatter(f06.obs_spread, f06.pred_spread_joint, s=13, color=BLUE,
                zorder=3, label="joint")
@@ -985,7 +1041,7 @@ def fig6() -> None:
 
     # (d) raw -> centred dumbbells: removing the domain mean shows how much
     # of the skill is spatial template vs atmospheric amplitude
-    ax = axes[1, 0]
+    ax = axd
     figstyle.clean_axis(ax)
     dumbbell = [
         ("scalar increment", "terrain_roughness_equation", BLUE),
@@ -1009,7 +1065,7 @@ def fig6() -> None:
             fontsize=7.8, fontweight="bold", color=INK)
     ax.text(0.02, -3.7, "within-parent spread", transform=ax.get_yaxis_transform(),
             fontsize=7.8, fontweight="bold", color=INK)
-    ax.set_ylim(-4.2, 3.7)
+    ax.set_ylim(-4.6, 4.2)
     ax.set_yticks([])
     ax.set_xlabel("RMSE (m s$^{-1}$)")
     ax.set_title("Raw and centred RMSE", pad=3.5)
@@ -1022,7 +1078,7 @@ def fig6() -> None:
 
     # (e) RMSE by information class: background bands + class colours, no
     # per-point text, group headers
-    ax = axes[1, 1]
+    ax = axe
     figstyle.clean_axis(ax)
     order_s = ["zero_correction", "global_training_mean", "bilinear", "bicubic",
                "terrain_roughness_equation", "cell_mean_persistence"]
@@ -1054,11 +1110,14 @@ def fig6() -> None:
     handles = [plt.Line2D([], [], marker="s", ls="none", ms=7,
                           markerfacecolor=CLASS_COLOR[k], markeredgecolor="none",
                           label=CLASS_DISPLAY[k]) for k in CLASS_COLOR]
-    ax.legend(handles=handles, frameon=False, fontsize=6.8, loc="lower right")
+    # legend above the data area (the points occupy the left half of the
+    # panel; the lower-right corner is where the data would sit)
+    ax.legend(handles=handles, frameon=False, fontsize=6.8, loc="lower left",
+              bbox_to_anchor=(0.0, 1.02), borderaxespad=0.0)
     figstyle.panel_label(ax, "e")
 
     # (f) paired DeltaRMSE forest (8 pairs, 120 min) with group separation
-    ax = axes[1, 2]
+    ax = fig.add_subplot(gs[2, :])
     figstyle.clean_axis(ax)
     b120 = boot[boot.block_minutes == 120].copy()
     order = ["terrain_vs_global", "terrain_vs_bilinear", "terrain_vs_bicubic",
@@ -1077,9 +1136,10 @@ def fig6() -> None:
                 fontsize=6.9)
     ax.axhline(3.5, color=LIGHT, lw=1.0, zorder=1)
     ax.axvline(0, color=INK, lw=0.8)
+    ax.set_xlim(-0.45, 0.22)
     ax.set_yticks(ys)
     ax.set_yticklabels([PAIR_LABEL[p] for p in b120.pair], fontsize=7.2)
-    ax.set_xlabel(r"$\Delta$RMSE (m s$^{-1}$; negative favours the terrain equations)")
+    ax.set_xlabel(r"$\Delta$RMSE (m s$^{-1}$)")
     ax.set_title("Paired bootstrap, 120-min blocks", pad=3.5)
     figstyle.panel_label(ax, "f")
     _save_fig(fig, "Fig6_information_sources_state")
