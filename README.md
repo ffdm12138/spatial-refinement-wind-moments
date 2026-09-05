@@ -1,55 +1,104 @@
-# What spatial refinement recovers from coarse wind fields over complex terrain — reproducibility package
+# spatial-refinement-wind-moments
 
-Code and derived source data for the article *What spatial refinement recovers from coarse wind fields over complex terrain* (Yuqi Feng, Guang Li, Ning Huang), submitted to *npj Climate and Atmospheric Science*.
+Reproducibility package for the Comment
 
-The manuscript asks which wind statistics are removed when a heterogeneous wind field is collapsed to one parent-cell vector, and which information source — instantaneous coarse-grid geometry, static terrain, or fine-grid history — is required to recover each one. The central result: **spatial refinement and statistical recovery are not the same problem**; geometric interpolation of the coarse field restores spatial detail but not the nonlinear parent-cell moments that coarse representation removed.
+> **"Increasing spatial sampling cannot restore subgrid wind moments"**
+> Yuqi Feng, Ning Huang, Guang Li (*npj Climate and Atmospheric Science*, Comment).
 
-## Repository
+A parent-cell wind vector does not uniquely determine the subgrid scalar
+statistics that coarse graining removes. The Comment quantifies this
+representation loss in **three real two-way-coupled WRF simulations** over two
+terrain settings of the eastern Qilian Mountains:
 
-This package is distributed from https://github.com/ffdm12138/spatial-refinement-wind-moments .
+| Case | Site | Event | Role in the argument |
+|---|---|---|---|
+| **A** | Yakou | 24 Sep 2015 (archived window) | mechanism / reference |
+| **B** | Yakou | 1 Dec 2015 (archived window) | same site, different event |
+| **C** | Ebao | 1 Dec 2015 (archived window) | different site, same event |
 
-## Contents
+Headline findings, identical across all three cases:
 
-- `scripts/` — Level-1 reproduction entry points (`reproduce_figures.py`, `reproduce_tables.py`, `verify_results.py`), the six-figure renderer `make_figures_npj.py`, the shared style/data-access module `figstyle.py`, and the Level-2 analysis scripts (interpolation baselines, paired bootstrap, information-source assembly, figure-data preparation).
-- `figure_data/` — figure-source tables and the WRF domain configuration used by the study-design figure.
-- `source_data/` — derived evidence tables (interpolation evaluation, recovery ratios, bootstrap, error decomposition, terrain fitting, claim ledger, figure contracts) plus sealed derived summaries of the archived WRF fields.
-- `figures/` — canonical reference figures (frozen at release; regenerated copies are written to `reproduced/figures/`, never into `figures/`).
-- `tables/` — canonical reference tables (regenerated copies go to `reproduced/tables/`).
-- `reproduced/` — regeneration outputs (created by the reproduction scripts; not part of the checksum manifest).
-- `SHA256SUMS.txt` — SHA-256 of every released file except itself.
-- `evidence_manifest.csv` — provenance of the 41 `source_data/` files (internal source paths, checksums, sizes).
-- The WPS/WRF namelists (`source_data/wrf_namelist.wps`, `source_data/wrf_namelist.input`, `figure_data/fig12_sources/wrf_domain/namelist.wps`) are archival configuration copies with machine-specific absolute paths sanitized; all scientific parameters are unchanged.
+- The scalar increment between the fine-grid mean speed and the parent-vector
+  magnitude decomposes **exactly** as `Delta_scalar = Delta_dyn + J`, and the
+  Jensen gap `J` carries the increment (`J / Delta_scalar` = 1.00–1.03 in all
+  six case–window combinations; `|Delta_dyn|` <= 0.007 m/s).
+- Bilinear and bicubic interpolation of the parent vectors onto the 111 m grid
+  recover at most **0.279 of the Jensen gap** and **0.487 of the within-parent
+  spread**; the period-mean scalar increment is not recovered
+  (parent-vector-constrained `Q_Delta` <= 0.281).
+- Terrain-related spatial organization **persists across events** at the first
+  site but its empirical mapping does **not transfer** to the second site,
+  whose own local information does recover structure — loss is reproducible;
+  recovery is information-limited and context-dependent.
 
-## Quick start (Level 1 — derived data to figures and tables)
+## Repository layout
 
-Requires Python 3.11. `environment.yml` (conda) and `requirements.txt` (pip) pin the exact versions used to produce the results; the interpolation contract records `torch==2.9.1+cpu` and `numpy==2.4.1`. The PyTorch CPU build is not on the default PyPI index; `requirements.txt` points at the PyTorch CPU index.
-
-```bash
-conda env create -f environment.yml
-conda activate npj-wind-moments
-python scripts/verify_results.py        # integrity + key-number verification
-python scripts/reproduce_tables.py      # Table 3/4 reconstruction (-> reproduced/tables/)
-python scripts/reproduce_figures.py     # six figures, four formats (-> reproduced/figures/)
 ```
-
-`verify_results.py` exits 0 only if all checks pass (checksums, 72,360-row interpolation record, RMSE decompositions, locked recovery ratios, file contracts). The reproduction scripts never modify the canonical `figures/` and `tables/` directories; outputs go to `reproduced/`.
-
-## Reproducibility levels
-
-- **Level 1 (runs from this package alone):** derived data → verification, tables, figures. The six figures and the main tables are regenerated from `figure_data/` and `source_data/` only; no raw tensors, observational station data, or network access are required. The 110-m Natural Earth country geometry used by Fig. 1(a) is vendored at `figure_data/fig12_sources/ne_110m_admin_0_countries.geojson`.
-- **Level 2 (raw archive → full derivation):** the analysis chain that produces the derived tables from the raw one-minute nested WRF fields requires the archived dataset (see `DATA_ACCESS.md`) and a checkout-style layout; set `NPJ_RAW_DIR` to the downloaded data. The sealed scripts `a4_error_decomposition.py` and `a5_paired_bootstrap.py` are provided as frozen provenance and are not re-runnable inside this package layout by design.
+reproduce_comment.py     single entry point (two modes, see below)
+pipeline/                the analysis pipeline (frozen contracts, plain Python)
+contracts/               frozen analysis contracts and case-A reference tables
+figure_source/           audited figure-source tables (C1–C4) + SHA256SUMS
+canonical_recovery/      audited interpolation-recovery tables (36/36 QA target)
+tests/                   (see pipeline/test_metrics.py) deterministic unit tests
+docs/                    data access, reproducibility, method contract
+```
 
 ## Data
 
-The raw one-minute nested WRF fields are archived at the National Tibetan Plateau / Third Pole Environment Data Center (Feng and Li, 2026; DOI 10.11888/atmos.tpdc.303495) and are not redistributed here because of size and third-party-use conditions; Level-1 regeneration does not require them. The archived record is shared with a related machine-learning study; **the present analysis uses only the WRF numerical fields and the derived statistics distributed here — no trained-model outputs from the related study are used.** No observational station data are included in, or used by, this study.
+The raw serialized WRF tensors (7 fields x 3 cases, ~2.7 GB total) are
+distributed **only** as GitHub Release assets, tag
+[`raw-data-multicase-v1`](../../releases/tag/raw-data-multicase-v1), with a
+SHA256 manifest. See [docs/DATA_ACCESS.md](docs/DATA_ACCESS.md).
 
-The interpolation cell–time record `source_data/interpolation_cell_time.csv` holds **72,360 rows = 24,120 × 3** (reference, bilinear, bicubic; 670 evaluation states × 36 parent cells per method).
+You do **not** need the raw data to regenerate the figures: the audited
+figure-source tables ship with this repository and are verified by checksum.
 
-## Checksums
+## Quick start
 
-`SHA256SUMS.txt` records the SHA-256 of every released file except itself (it excludes nothing else; `.git/` and regenerable `reproduced/` outputs are not part of the distributed tree). Verify with `sha256sum -c SHA256SUMS.txt`.
+```bash
+pip install -r requirements.txt
 
-## Licensing
+# 1. verify the audited tables and regenerate the three Comment figures
+python reproduce_comment.py
 
-- `LICENSE` — MIT license, covering the code in this repository.
-- `DATA_LICENSE.md` — licensing of the derived data tables (CC BY 4.0), the Natural Earth auxiliary data (public domain), and the archived WRF dataset (Third Pole Environment Data Center terms; not redistributed here).
+# 2. optional: full re-derivation from the raw Release data (~GBs, needs torch)
+python reproduce_comment.py --mode raw --data /path/to/data_root
+```
+
+`--mode tables` verifies the shipped tables and re-renders
+`figures/Fig1_representation_loss_multicase.pdf`,
+`figures/Fig2_geometric_recovery_multicase.pdf` and
+`figures/Fig3_persistence_portability.pdf`.
+
+`--mode raw` reruns the complete chain — raw-contract validation, parent/fine
+moments, the four parameter-free interpolation controls, terrain descriptors,
+temporal and cross-site transfers, information-source comparison — then checks
+the result against the shipped audited tables and runs the **independent
+36/36 interpolation QA** (independent recomputation of all 36 recovery ratios
+from the raw d02 fields; see [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md)).
+
+## What d02 / d05 / 27x27 / 6x6 mean
+
+- **d02** is the ~3 km coarse parent domain; its cell values are the *parent
+  vectors* (the coarse representation).
+- **d05** is the ~111.11 m two-way-nested *fine-grid numerical reference*
+  (not observational truth).
+- Each analyzed parent cell maps to a contiguous **27 x 27 = 729** block of
+  d05 cells; the analyzed region is a contiguous **6 x 6 = 36** parent-cell
+  block (162 x 162 fine cells).
+- Each run archives 4,320 one-minute states; the first 970 are excluded by the
+  inherited analysis convention; the remaining 3,350 split chronologically into
+  2,680 calibration and 670 evaluation states.
+
+The full estimand/window/interpolation contract is in
+[docs/METHOD_CONTRACT.md](docs/METHOD_CONTRACT.md).
+
+## How to cite
+
+See [CITATION.cff](CITATION.cff). The upstream WRF data archive is
+10.11888/atmos.tpdc.303495; the Yakou station archive (auxiliary context only)
+is 10.3972/hiwater.315.2016.db.
+
+## License
+
+See [LICENSE](LICENSE).

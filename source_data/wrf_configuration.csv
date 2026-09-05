@@ -1,6 +1,0 @@
-domain,dx_m,microphysics,longwave_radiation,shortwave_radiation,surface_layer,land_surface,pbl,cumulus,diff_opt,km_opt,sfs_opt
-d01,9000.0,Thompson,RRTMG,RRTMG,revised MM5,Noah LSM,YSU,Grell-Freitas,1,4,0
-d02,3000.0,Thompson,RRTMG,RRTMG,revised MM5,Noah LSM,YSU,none,1,4,0
-d03,1000.0,Thompson,RRTMG,RRTMG,revised MM5,Noah LSM,YSU,none,1,4,0
-d04,333.3333333333333,Thompson,RRTMG,RRTMG,revised MM5,Noah LSM,explicit/none,none,2,2,1
-d05,111.11111111111111,Thompson,RRTMG,RRTMG,revised MM5,Noah LSM,explicit/none,none,2,2,1
