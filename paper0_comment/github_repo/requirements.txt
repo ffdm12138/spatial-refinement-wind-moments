@@ -1,0 +1,12 @@
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+# pandas dispatches Spearman rank correlation to scipy.stats.spearmanr
+# (pandas/core/nanops.py), which is an optional pandas dependency: it is not
+# pulled in by pandas alone.  The Comment's transverse diagnostic uses
+# Series.corr(method="spearman"), so scipy is a hard runtime requirement here.
+scipy>=1.10
+# Required by `reproduce_comment.py --from-raw` for torch tensor loading and
+# bilinear/bicubic interpolation.  The published raw archive was generated and
+# checked with the CPU build of this version family.
+torch>=2.5,<2.6

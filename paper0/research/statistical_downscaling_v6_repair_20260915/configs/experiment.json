@@ -1,0 +1,18 @@
+{
+  "id": "V6_REPAIR_20260915",
+  "status": "V6_FROZEN_ACCEPTANCE_PASS_SEE_RUN_STATE",
+  "splits": {"A": {"train": [970,3650], "validation": [3650,4320]}, "B": {"test": [970,4320]}, "C": {"test": [970,4320]}},
+  "all_parent_ids": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],
+  "core_parent_ids": [7,8,9,10,13,14,15,16,19,20,21,22,25,26,27,28],
+  "fine_cells_per_parent": 729,
+  "primary_target": "all_timestep_parent_window_speed_distribution",
+  "co_target": "parent_window_J_distribution",
+  "per_timestep_conditional_target": "diagnostic_one_archived_minute_not_hour",
+  "pixel_target": "separate_conditional_phase_not_implied_by_parent_success",
+  "legal_input_columns": ["u02p","v02p","U","sin_theta","cos_theta"],
+  "terrain_registration": "PENDING_A_ONLY_DESCRIPTOR_AUDIT",
+  "outer_forward_folds": [[2190,2310,2756],[2636,2756,3202],[3082,3202,3650]],
+  "bootstrap": {"seed": 20260915,"blocks": [60,120,240],"primary_block": 120,"replicates": 2000,"method": "noncircular_moving_block_full_spatial_field"},
+  "BC_exposure": "REPEATEDLY_SEEN_RETROSPECTIVE_REEVALUATION_ONLY",
+  "baseline_namespace": {"V6_B0":"global_climatology","V6_B1":"same_parent_history_if_geographically_applicable","V6_B2":"speed_conditioned","V6_B3":"d02_only","V6_B4":"isotropic_terrain","V6_B5":"wind_relative_terrain"}
+}

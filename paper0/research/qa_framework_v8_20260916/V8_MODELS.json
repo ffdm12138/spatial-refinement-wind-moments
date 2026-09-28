@@ -1,0 +1,60 @@
+{
+  "id": "V8_QA_FOCUS_01",
+  "status": "FROZEN_BEFORE_V8_FIT",
+  "contract": "V8_CONTRACT.md",
+  "data_source": {
+    "fork": "../statistical_downscaling_v6_repair_20260915",
+    "cache_read_only": ["A_labels.csv.gz", "B_labels.csv.gz", "C_labels.csv.gz",
+                         "A_features.npy", "B_features.npy", "C_features.npy",
+                         "A_speed.npy", "B_speed.npy", "C_speed.npy"],
+    "schema": "../statistical_downscaling_v6_repair_20260915/experiments/04_terrain_features/FEATURE_SCHEMA.json",
+    "note": "inputs hash-bound in every stage receipt; V5/V6/V7 are read-only archives"
+  },
+  "terrain4": ["terrain_height_sd", "terrain_relief_27_mean", "terrain_slope_mean", "terrain_tpi_9_mean"],
+  "engine": {"optimizer": "GAM ridge alpha=0.01, scaled inputs + 4-knot cubic speed spline (V6 scientific_models design)",
+             "q_head": "softplus(z)*qscale", "a_head": "expit(z), BCE weighted q/(q+1)",
+             "seed": 20260915},
+  "levels": {
+    "A_T": {"folds": [[2190, 2310, 2756], [2636, 2756, 3202], [3082, 3202, 3650]], "cal_tail": 480},
+    "A_S": {"folds": {"S1": [0,1,2,6,7,8,12,13,14], "S2": [3,4,5,9,10,11,15,16,17],
+                       "S3": [18,19,20,24,25,26,30,31,32], "S4": [21,22,23,27,28,29,33,34,35]}},
+    "A_ST": {"train_end": 3114},
+    "B": {"test": [970, 4320]}, "C": {"test": [970, 4320]}
+  },
+  "stages": {
+    "01_truth_audit": {"identities": ["Q-(S^2+2VJ+J^2)", "a*-range", "degenerate-Q convention"],
+                        "delta_dyn": ["per case mean/p50/p90/p99/max over (t,parent)"],
+                        "error_propagation": ["dmu/dU", "dJ/dU", "first-order bands at p99 |V-U|"]},
+    "02_Q_predictability": {"targets": ["Q"], "models": ["global_clim", "parent_clim(A_T only)", "d02", "d02+terrain4"],
+                             "metrics": ["rmse", "mae", "r2", "skill_vs_clim"], "degenerate_rows": "Q<1e-12 excluded from a-fit stats only"},
+    "03_a_predictability": {"targets": ["a*"], "models": ["global_clim", "parent_clim(A_T only)", "d02", "d02+terrain4"],
+                             "metrics": ["rmse", "mae", "r2", "window_J_w1_contribution"]},
+    "04_gustiness": {"derivation": "U_g^2 = mu^2 - V^2 = a*Q; U_g = alpha*U_sigma => a = alpha^2",
+                      "arms": ["a_const", "a_f_U", "a_f_U_theta", "a_f_U_theta_terrain4"],
+                      "alpha_grid": [0.05, 0.1, 0.15, 0.2, 0.25, 0.3],
+                      "alpha_selection": "train-layer window J W1 only; frozen per layer before test"},
+    "05_oracle": {"arms": ["O00_Qtrue_atrue", "O10_Qhat_atrue", "O01_Qtrue_ahat", "O11_Qhat_ahat"],
+                   "source_models": "02/03 d02+terrain4 fits per level + full-A fits for B/C",
+                   "evaluation": "identical J, mu, S, P(s) window metrics",
+                   "verdict": "bottleneck=a if W1(O01)-W1(O00) > CI and W1(O10)~W1(O00); symmetric for Q"},
+    "06_representation": {"arms": ["QA", "JS", "MuS", "KL_weibull"],
+                           "parity": "same input columns, same GAM design, same alpha; all reduced to J + moment-matched Weibull P(s)",
+                           "deployment": {"QA": "sqrt(U^2+aQ) identities", "JS": "mu_hat=U+J_hat",
+                                           "MuS": "J_hat=mu_hat-U", "KL_weibull": "DIRECT weibull NLL, mean=U+softplus inc"},
+                           "metric": "window speed W1 primary; J W1 secondary"},
+    "07_consistency": {"checks": ["identity residual on predicted triples", "J_from_mu vs J_direct",
+                                    "a in [0,1]", "Q>=0", "S>=0", "CDF validity"],
+                        "gate": "all checks pass at every evaluated segment"},
+    "08_frozen_BC": {"selection_rule": "QA-terrain4 unless a 06 arm beats it at >=4/5 levels (pre-registered); write V8_FROZEN_MODEL.json",
+                      "bc": "fit full A-train once; evaluate B and C once; 120-min paired bootstrap 2000 reps"}
+  },
+  "gates": {
+    "G_repr": "QA not worse than best rival arm at >=4/5 levels",
+    "G_gust": "state-dependent a (full arm) beats a_const at >=4/5 levels",
+    "G_consist": "07 all-pass",
+    "catastrophic": "window W1 or CRPS >1.2 x d02-only stops promotion"
+  },
+  "bootstrap": {"seed": 20260915, "primary_block": 120, "blocks": [60, 120, 240], "replicates": 2000},
+  "bc_exposure": "REPEATEDLY_SEEN_RETROSPECTIVE_DIAGNOSTIC_ONLY",
+  "final_confirmation_requires": ["new cases D/E"]
+}

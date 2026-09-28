@@ -1,0 +1,1393 @@
+{
+  "version": "V9.5",
+  "status": "AUTHORITATIVE_V9_5",
+  "source_schema": "research/statistical_downscaling_v6_repair_20260915/experiments/04_terrain_features/FEATURE_SCHEMA.json",
+  "source_schema_sha256": "3b98128c8442e65ceda7b2ec993a35630536a752e61e6897491b0d5a3360a7d2",
+  "all_columns": [
+    "u02p",
+    "v02p",
+    "U",
+    "log1p_U",
+    "unit_u",
+    "unit_v",
+    "direction_valid",
+    "terrain_tpi_1_mean",
+    "terrain_tpi_1_sd",
+    "terrain_tpi_1_q10",
+    "terrain_tpi_1_q90",
+    "terrain_height_sd_1_mean",
+    "terrain_height_sd_1_sd",
+    "terrain_height_sd_1_q10",
+    "terrain_height_sd_1_q90",
+    "terrain_relief_1_mean",
+    "terrain_relief_1_sd",
+    "terrain_relief_1_q10",
+    "terrain_relief_1_q90",
+    "terrain_slope_rms_1_mean",
+    "terrain_slope_rms_1_sd",
+    "terrain_slope_rms_1_q10",
+    "terrain_slope_rms_1_q90",
+    "terrain_valid_1_mean",
+    "terrain_valid_1_sd",
+    "terrain_valid_1_q10",
+    "terrain_valid_1_q90",
+    "terrain_tpi_3_mean",
+    "terrain_tpi_3_sd",
+    "terrain_tpi_3_q10",
+    "terrain_tpi_3_q90",
+    "terrain_height_sd_3_mean",
+    "terrain_height_sd_3_sd",
+    "terrain_height_sd_3_q10",
+    "terrain_height_sd_3_q90",
+    "terrain_relief_3_mean",
+    "terrain_relief_3_sd",
+    "terrain_relief_3_q10",
+    "terrain_relief_3_q90",
+    "terrain_slope_rms_3_mean",
+    "terrain_slope_rms_3_sd",
+    "terrain_slope_rms_3_q10",
+    "terrain_slope_rms_3_q90",
+    "terrain_valid_3_mean",
+    "terrain_valid_3_sd",
+    "terrain_valid_3_q10",
+    "terrain_valid_3_q90",
+    "terrain_tpi_5_mean",
+    "terrain_tpi_5_sd",
+    "terrain_tpi_5_q10",
+    "terrain_tpi_5_q90",
+    "terrain_height_sd_5_mean",
+    "terrain_height_sd_5_sd",
+    "terrain_height_sd_5_q10",
+    "terrain_height_sd_5_q90",
+    "terrain_relief_5_mean",
+    "terrain_relief_5_sd",
+    "terrain_relief_5_q10",
+    "terrain_relief_5_q90",
+    "terrain_slope_rms_5_mean",
+    "terrain_slope_rms_5_sd",
+    "terrain_slope_rms_5_q10",
+    "terrain_slope_rms_5_q90",
+    "terrain_valid_5_mean",
+    "terrain_valid_5_sd",
+    "terrain_valid_5_q10",
+    "terrain_valid_5_q90",
+    "terrain_tpi_9_mean",
+    "terrain_tpi_9_sd",
+    "terrain_tpi_9_q10",
+    "terrain_tpi_9_q90",
+    "terrain_height_sd_9_mean",
+    "terrain_height_sd_9_sd",
+    "terrain_height_sd_9_q10",
+    "terrain_height_sd_9_q90",
+    "terrain_relief_9_mean",
+    "terrain_relief_9_sd",
+    "terrain_relief_9_q10",
+    "terrain_relief_9_q90",
+    "terrain_slope_rms_9_mean",
+    "terrain_slope_rms_9_sd",
+    "terrain_slope_rms_9_q10",
+    "terrain_slope_rms_9_q90",
+    "terrain_valid_9_mean",
+    "terrain_valid_9_sd",
+    "terrain_valid_9_q10",
+    "terrain_valid_9_q90",
+    "terrain_tpi_15_mean",
+    "terrain_tpi_15_sd",
+    "terrain_tpi_15_q10",
+    "terrain_tpi_15_q90",
+    "terrain_height_sd_15_mean",
+    "terrain_height_sd_15_sd",
+    "terrain_height_sd_15_q10",
+    "terrain_height_sd_15_q90",
+    "terrain_relief_15_mean",
+    "terrain_relief_15_sd",
+    "terrain_relief_15_q10",
+    "terrain_relief_15_q90",
+    "terrain_slope_rms_15_mean",
+    "terrain_slope_rms_15_sd",
+    "terrain_slope_rms_15_q10",
+    "terrain_slope_rms_15_q90",
+    "terrain_valid_15_mean",
+    "terrain_valid_15_sd",
+    "terrain_valid_15_q10",
+    "terrain_valid_15_q90",
+    "terrain_tpi_27_mean",
+    "terrain_tpi_27_sd",
+    "terrain_tpi_27_q10",
+    "terrain_tpi_27_q90",
+    "terrain_height_sd_27_mean",
+    "terrain_height_sd_27_sd",
+    "terrain_height_sd_27_q10",
+    "terrain_height_sd_27_q90",
+    "terrain_relief_27_mean",
+    "terrain_relief_27_sd",
+    "terrain_relief_27_q10",
+    "terrain_relief_27_q90",
+    "terrain_slope_rms_27_mean",
+    "terrain_slope_rms_27_sd",
+    "terrain_slope_rms_27_q10",
+    "terrain_slope_rms_27_q90",
+    "terrain_valid_27_mean",
+    "terrain_valid_27_sd",
+    "terrain_valid_27_q10",
+    "terrain_valid_27_q90",
+    "terrain_height_mean",
+    "terrain_height_sd",
+    "terrain_height_q10",
+    "terrain_height_q90",
+    "terrain_relative_height_mean",
+    "terrain_relative_height_sd",
+    "terrain_relative_height_q10",
+    "terrain_relative_height_q90",
+    "terrain_slope_mean",
+    "terrain_slope_sd",
+    "terrain_slope_q10",
+    "terrain_slope_q90",
+    "terrain_laplacian_mean",
+    "terrain_laplacian_sd",
+    "terrain_laplacian_q10",
+    "terrain_laplacian_q90",
+    "wind_slope_signed",
+    "wind_slope_rms",
+    "cross_slope_rms",
+    "wind_curvature",
+    "wind_height_difference_1",
+    "wind_upstream_positive_1",
+    "wind_valid_1",
+    "wind_height_difference_3",
+    "wind_upstream_positive_3",
+    "wind_valid_3",
+    "wind_height_difference_5",
+    "wind_upstream_positive_5",
+    "wind_valid_5",
+    "wind_height_difference_9",
+    "wind_upstream_positive_9",
+    "wind_valid_9",
+    "wind_height_difference_15",
+    "wind_upstream_positive_15",
+    "wind_valid_15",
+    "wind_height_difference_27",
+    "wind_upstream_positive_27",
+    "wind_valid_27",
+    "wind_horizon_positive_mean",
+    "wind_horizon_positive_q90"
+  ],
+  "features": [
+    {
+      "canonical_name": "u02p",
+      "full_matrix_column_index": 0,
+      "type": "dynamic",
+      "unit": "m s^-1",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "v02p",
+      "full_matrix_column_index": 1,
+      "type": "dynamic",
+      "unit": "m s^-1",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "U",
+      "full_matrix_column_index": 2,
+      "type": "dynamic",
+      "unit": "m s^-1",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "log1p_U",
+      "full_matrix_column_index": 3,
+      "type": "dynamic",
+      "unit": "dimensionless",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "unit_u",
+      "full_matrix_column_index": 4,
+      "type": "dynamic",
+      "unit": "dimensionless",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "unit_v",
+      "full_matrix_column_index": 5,
+      "type": "dynamic",
+      "unit": "dimensionless",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "direction_valid",
+      "full_matrix_column_index": 6,
+      "type": "dynamic",
+      "unit": "dimensionless",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_1_mean",
+      "full_matrix_column_index": 7,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_1_sd",
+      "full_matrix_column_index": 8,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_1_q10",
+      "full_matrix_column_index": 9,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_1_q90",
+      "full_matrix_column_index": 10,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_1_mean",
+      "full_matrix_column_index": 11,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_1_sd",
+      "full_matrix_column_index": 12,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_1_q10",
+      "full_matrix_column_index": 13,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_1_q90",
+      "full_matrix_column_index": 14,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_1_mean",
+      "full_matrix_column_index": 15,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_1_sd",
+      "full_matrix_column_index": 16,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_1_q10",
+      "full_matrix_column_index": 17,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_1_q90",
+      "full_matrix_column_index": 18,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_1_mean",
+      "full_matrix_column_index": 19,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_1_sd",
+      "full_matrix_column_index": 20,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_1_q10",
+      "full_matrix_column_index": 21,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_1_q90",
+      "full_matrix_column_index": 22,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_1_mean",
+      "full_matrix_column_index": 23,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_1_sd",
+      "full_matrix_column_index": 24,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_1_q10",
+      "full_matrix_column_index": 25,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_1_q90",
+      "full_matrix_column_index": 26,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_3_mean",
+      "full_matrix_column_index": 27,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_3_sd",
+      "full_matrix_column_index": 28,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_3_q10",
+      "full_matrix_column_index": 29,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_3_q90",
+      "full_matrix_column_index": 30,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_3_mean",
+      "full_matrix_column_index": 31,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_3_sd",
+      "full_matrix_column_index": 32,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_3_q10",
+      "full_matrix_column_index": 33,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_3_q90",
+      "full_matrix_column_index": 34,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_3_mean",
+      "full_matrix_column_index": 35,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_3_sd",
+      "full_matrix_column_index": 36,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_3_q10",
+      "full_matrix_column_index": 37,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_3_q90",
+      "full_matrix_column_index": 38,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_3_mean",
+      "full_matrix_column_index": 39,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_3_sd",
+      "full_matrix_column_index": 40,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_3_q10",
+      "full_matrix_column_index": 41,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_3_q90",
+      "full_matrix_column_index": 42,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_3_mean",
+      "full_matrix_column_index": 43,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_3_sd",
+      "full_matrix_column_index": 44,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_3_q10",
+      "full_matrix_column_index": 45,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_3_q90",
+      "full_matrix_column_index": 46,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_5_mean",
+      "full_matrix_column_index": 47,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_5_sd",
+      "full_matrix_column_index": 48,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_5_q10",
+      "full_matrix_column_index": 49,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_5_q90",
+      "full_matrix_column_index": 50,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_5_mean",
+      "full_matrix_column_index": 51,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_5_sd",
+      "full_matrix_column_index": 52,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_5_q10",
+      "full_matrix_column_index": 53,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_5_q90",
+      "full_matrix_column_index": 54,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_5_mean",
+      "full_matrix_column_index": 55,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_5_sd",
+      "full_matrix_column_index": 56,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_5_q10",
+      "full_matrix_column_index": 57,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_5_q90",
+      "full_matrix_column_index": 58,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_5_mean",
+      "full_matrix_column_index": 59,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_5_sd",
+      "full_matrix_column_index": 60,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_5_q10",
+      "full_matrix_column_index": 61,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_5_q90",
+      "full_matrix_column_index": 62,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_5_mean",
+      "full_matrix_column_index": 63,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_5_sd",
+      "full_matrix_column_index": 64,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_5_q10",
+      "full_matrix_column_index": 65,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_5_q90",
+      "full_matrix_column_index": 66,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_9_mean",
+      "full_matrix_column_index": 67,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_9_sd",
+      "full_matrix_column_index": 68,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_9_q10",
+      "full_matrix_column_index": 69,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_9_q90",
+      "full_matrix_column_index": 70,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_9_mean",
+      "full_matrix_column_index": 71,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_9_sd",
+      "full_matrix_column_index": 72,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_9_q10",
+      "full_matrix_column_index": 73,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_9_q90",
+      "full_matrix_column_index": 74,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_9_mean",
+      "full_matrix_column_index": 75,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_9_sd",
+      "full_matrix_column_index": 76,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_9_q10",
+      "full_matrix_column_index": 77,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_9_q90",
+      "full_matrix_column_index": 78,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_9_mean",
+      "full_matrix_column_index": 79,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_9_sd",
+      "full_matrix_column_index": 80,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_9_q10",
+      "full_matrix_column_index": 81,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_9_q90",
+      "full_matrix_column_index": 82,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_9_mean",
+      "full_matrix_column_index": 83,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_9_sd",
+      "full_matrix_column_index": 84,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_9_q10",
+      "full_matrix_column_index": 85,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_9_q90",
+      "full_matrix_column_index": 86,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_15_mean",
+      "full_matrix_column_index": 87,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_15_sd",
+      "full_matrix_column_index": 88,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_15_q10",
+      "full_matrix_column_index": 89,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_15_q90",
+      "full_matrix_column_index": 90,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_15_mean",
+      "full_matrix_column_index": 91,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_15_sd",
+      "full_matrix_column_index": 92,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_15_q10",
+      "full_matrix_column_index": 93,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_15_q90",
+      "full_matrix_column_index": 94,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_15_mean",
+      "full_matrix_column_index": 95,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_15_sd",
+      "full_matrix_column_index": 96,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_15_q10",
+      "full_matrix_column_index": 97,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_15_q90",
+      "full_matrix_column_index": 98,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_15_mean",
+      "full_matrix_column_index": 99,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_15_sd",
+      "full_matrix_column_index": 100,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_15_q10",
+      "full_matrix_column_index": 101,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_15_q90",
+      "full_matrix_column_index": 102,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_15_mean",
+      "full_matrix_column_index": 103,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_15_sd",
+      "full_matrix_column_index": 104,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_15_q10",
+      "full_matrix_column_index": 105,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_15_q90",
+      "full_matrix_column_index": 106,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_27_mean",
+      "full_matrix_column_index": 107,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_27_sd",
+      "full_matrix_column_index": 108,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_27_q10",
+      "full_matrix_column_index": 109,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_tpi_27_q90",
+      "full_matrix_column_index": 110,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_27_mean",
+      "full_matrix_column_index": 111,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_27_sd",
+      "full_matrix_column_index": 112,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_27_q10",
+      "full_matrix_column_index": 113,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd_27_q90",
+      "full_matrix_column_index": 114,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_27_mean",
+      "full_matrix_column_index": 115,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_27_sd",
+      "full_matrix_column_index": 116,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_27_q10",
+      "full_matrix_column_index": 117,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relief_27_q90",
+      "full_matrix_column_index": 118,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_27_mean",
+      "full_matrix_column_index": 119,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_27_sd",
+      "full_matrix_column_index": 120,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_27_q10",
+      "full_matrix_column_index": 121,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_rms_27_q90",
+      "full_matrix_column_index": 122,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_27_mean",
+      "full_matrix_column_index": 123,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_27_sd",
+      "full_matrix_column_index": 124,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_27_q10",
+      "full_matrix_column_index": 125,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_valid_27_q90",
+      "full_matrix_column_index": 126,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_mean",
+      "full_matrix_column_index": 127,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_sd",
+      "full_matrix_column_index": 128,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_q10",
+      "full_matrix_column_index": 129,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_height_q90",
+      "full_matrix_column_index": 130,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relative_height_mean",
+      "full_matrix_column_index": 131,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relative_height_sd",
+      "full_matrix_column_index": 132,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relative_height_q10",
+      "full_matrix_column_index": 133,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_relative_height_q90",
+      "full_matrix_column_index": 134,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_mean",
+      "full_matrix_column_index": 135,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_sd",
+      "full_matrix_column_index": 136,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_q10",
+      "full_matrix_column_index": 137,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_slope_q90",
+      "full_matrix_column_index": 138,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_laplacian_mean",
+      "full_matrix_column_index": 139,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_laplacian_sd",
+      "full_matrix_column_index": 140,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_laplacian_q10",
+      "full_matrix_column_index": 141,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "terrain_laplacian_q90",
+      "full_matrix_column_index": 142,
+      "type": "static-terrain",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_slope_signed",
+      "full_matrix_column_index": 143,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_slope_rms",
+      "full_matrix_column_index": 144,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "cross_slope_rms",
+      "full_matrix_column_index": 145,
+      "type": "other",
+      "unit": "unknown-or-source-defined",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_curvature",
+      "full_matrix_column_index": 146,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_height_difference_1",
+      "full_matrix_column_index": 147,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_upstream_positive_1",
+      "full_matrix_column_index": 148,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_valid_1",
+      "full_matrix_column_index": 149,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_height_difference_3",
+      "full_matrix_column_index": 150,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_upstream_positive_3",
+      "full_matrix_column_index": 151,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_valid_3",
+      "full_matrix_column_index": 152,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_height_difference_5",
+      "full_matrix_column_index": 153,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_upstream_positive_5",
+      "full_matrix_column_index": 154,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_valid_5",
+      "full_matrix_column_index": 155,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_height_difference_9",
+      "full_matrix_column_index": 156,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_upstream_positive_9",
+      "full_matrix_column_index": 157,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_valid_9",
+      "full_matrix_column_index": 158,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_height_difference_15",
+      "full_matrix_column_index": 159,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_upstream_positive_15",
+      "full_matrix_column_index": 160,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_valid_15",
+      "full_matrix_column_index": 161,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_height_difference_27",
+      "full_matrix_column_index": 162,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_upstream_positive_27",
+      "full_matrix_column_index": 163,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_valid_27",
+      "full_matrix_column_index": 164,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_horizon_positive_mean",
+      "full_matrix_column_index": 165,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    },
+    {
+      "canonical_name": "wind_horizon_positive_q90",
+      "full_matrix_column_index": 166,
+      "type": "dynamic",
+      "unit": "descriptor-native",
+      "source": "research/statistical_downscaling_v6_repair_20260915/cache/*_features.npy"
+    }
+  ],
+  "canonical_dynamic_features": [
+    "u02p",
+    "v02p",
+    "U",
+    "log1p_U",
+    "unit_u",
+    "unit_v",
+    "direction_valid"
+  ],
+  "canonical_terrain_features": [
+    "terrain_height_sd",
+    "terrain_relief_27_mean",
+    "terrain_slope_mean",
+    "terrain_tpi_9_mean"
+  ],
+  "canonical_model_features": [
+    "u02p",
+    "v02p",
+    "U",
+    "log1p_U",
+    "unit_u",
+    "unit_v",
+    "direction_valid",
+    "terrain_height_sd",
+    "terrain_relief_27_mean",
+    "terrain_slope_mean",
+    "terrain_tpi_9_mean"
+  ],
+  "canonical_model_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    128,
+    115,
+    135,
+    67
+  ],
+  "terrain_parent_contract": {
+    "parent_count": 36,
+    "terrain_rows": "first 36 rows of each case feature matrix",
+    "time_invariant_required": true,
+    "extraction_rule": "ALL_COLUMNS.index(canonical_name), never local subset index"
+  }
+}
