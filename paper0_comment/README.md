@@ -57,3 +57,13 @@ The code license is MIT. Data permissions follow the existing deposit and are
 not expanded by this revision. Generated outputs go to the selected output
 directory. The manuscript is under editorial revision; no acceptance or public
 availability is claimed.
+
+## Mean preservation and subgrid wind statistics
+
+The current figure labels describe wind-speed measures, within-cell wind-speed
+standard deviation, mean-wind residuals and ratios of mean subgrid statistics.
+This terminology update changes no numerical calculation or plotted sample.
+See [residual scopes](definitions/CONSTRAINT_RESIDUAL_SCOPES.md) and the
+[six-row summary](definitions/CURRENT_CONSTRAINT_RESIDUALS.csv) for the exact
+evaluation-period versus full-archive maximum-component residuals.
+The manuscript's <1.1e-14 m/s bound applies to the 670 evaluation output times.

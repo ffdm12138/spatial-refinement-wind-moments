@@ -104,7 +104,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
     # (a) schematic
     ax = fig.add_subplot(gs[0, 0])
     ax.axis("off")
-    ax.set_title("a) Three-state accounting", loc="left", fontweight="bold")
+    ax.set_title("a) Three wind-speed measures", loc="left", fontweight="bold")
     bw = 0.26
     for name, formula, x in (
             ("native coarse", r"$S_c=|\mathbf{U}_c|$", 0.02),
@@ -133,7 +133,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
 
     # (b) decomposition dumbbells
     ax = fig.add_subplot(gs[0, 1])
-    ax.set_title("b) Where the discrepancy comes from", loc="left",
+    ax.set_title("b) Wind-speed difference components", loc="left",
                  fontweight="bold")
     # Six groups: each case contributes its analysis-window and held-out means,
     # so the panel shows the same decomposition in both windows rather than
@@ -161,7 +161,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
         if abs(d) > 1e-9:
             ax.text(xi, max(d, j) + 0.016, f"{j/d:.2f}", ha="center",
                     fontsize=6.0, color="#0072B2", fontweight="bold")
-    ax.set_xticks(x, [f"{b}\n{'analysis' if w == 'analysis' else 'held-out'}"
+    ax.set_xticks(x, [f"{b}\n{'analysis' if w == 'analysis' else 'evaluation'}"
                       for b, w in zip(base * 2,
                                       ["analysis"] * len(base) + ["eval"] * len(base))])
     ax.tick_params(axis="x", labelsize=6.5)
@@ -172,7 +172,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
 
     # (c) vector consistency vs gap
     ax = fig.add_subplot(gs[1, 0])
-    ax.set_title("c) Resolved vector consistency vs the gap", loc="left",
+    ax.set_title("c) Coarse-fine vector difference and gap", loc="left",
                  fontweight="bold")
     xx = np.arange(len(df))
     w = 0.38
@@ -201,7 +201,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
 
     # (d) Delta_total vs J over held-out cell-times
     ax = fig.add_subplot(gs[1, 1])
-    ax.set_title(r"d) $\Delta_{\rm total}$ vs $J$ (held-out states)",
+    ax.set_title(r"d) $\Delta_{\rm total}$ vs $J$ (evaluation period)",
                  loc="left", fontweight="bold")
     displayed = []
     n_points = 0
@@ -341,7 +341,7 @@ def render_mechanism(mechs: list[dict], out, moments: dict | None = None,
     for name, col, color, marker in (
             (r"Transverse $\sigma_\perp^2/(2S_v)$", "sp_J_perp", "#0072B2", "o"),
             (r"Parallel $\sigma_\parallel^2/(2S_v)$", "sp_J_par", "#56B4E9", "s"),
-            (r"Scalar spread $\sigma_s$", "sp_J_S", "#999999", "^")):
+            (r"Wind-speed SD $\sigma_s$", "sp_J_S", "#999999", "^")):
         y = mech[col].values
         ax.plot(xx, y, marker=marker, color=color, lw=1.2, ms=4.2, label=name,
                 zorder=3)
@@ -362,7 +362,7 @@ def render_mechanism(mechs: list[dict], out, moments: dict | None = None,
 
     for _ax, _lab in zip(fig.axes,
                          ["a) Exact counterexamples", "b) Transverse relation",
-                          "c) Rank agreement"]):
+                          "c) Spearman rank correlation"]):
         fig.text(_ax.get_position().x0, 0.965, _lab, ha="left", va="top",
                  fontsize=8.5, fontweight="bold")
 
@@ -377,7 +377,7 @@ def render_recovery(rows: list[dict], out) -> None:
     df = pd.DataFrame(rows)
     methods = ["bilinear", "bicubic", "bilinear_constrained", "bicubic_constrained"]
     labels = ["Ordinary\nbilinear", "Ordinary\nbicubic",
-              "Constrained\nbilinear", "Constrained\nbicubic"]
+              "Mean-preserving\nbilinear", "Mean-preserving\nbicubic"]
     off = {"A": -0.15, "B": 0.0, "C": 0.15}
 
     fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.05))
@@ -401,8 +401,8 @@ def render_recovery(rows: list[dict], out) -> None:
     axes[0].set_yscale("log"); axes[0].set_ylim(1e-16, 8)
     axes[0].set_xticks(range(4)); axes[0].set_xticklabels(labels, fontsize=6.4)
     axes[0].set_xlim(-0.5, 3.5)
-    axes[0].set_ylabel(r"Coarse-vector RMSE (m s$^{-1}$)")
-    axes[0].set_title("a) Coarse-vector conservation", loc="left", fontweight="bold")
+    axes[0].set_ylabel(r"Mean-wind RMSE (m s$^{-1}$)")
+    axes[0].set_title("a) Coarse-grid mean preservation", loc="left", fontweight="bold")
     axes[0].grid(axis="y", ls=":", lw=0.5, color="#E2E8F0")
 
     for i, mth in enumerate(methods):
@@ -415,13 +415,13 @@ def render_recovery(rows: list[dict], out) -> None:
     axes[1].axhline(0.5, color="#CBD5E1", lw=0.6, ls=":")
     axes[1].set_xticks(range(4)); axes[1].set_xticklabels(labels, fontsize=6.4)
     axes[1].set_xlim(-0.5, 3.5); axes[1].set_ylim(0, 1.2)
-    axes[1].set_ylabel(r"Recovery ratio $Q_M$")
-    axes[1].set_title("b) Subgrid-statistic recovery", loc="left", fontweight="bold")
+    axes[1].set_ylabel(r"Ratio of mean statistics $Q_M$")
+    axes[1].set_title("b) Mean subgrid wind statistics", loc="left", fontweight="bold")
     axes[1].grid(axis="y", ls=":", lw=0.5, color="#E2E8F0")
     axes[1].legend(handles=[Line2D([], [], marker="o", color="#334155", ls="", ms=5,
                                    label=r"Aggregation gap $J$"),
                             Line2D([], [], marker="^", color="#334155", ls="", ms=5,
-                                   label=r"Scalar spread $\sigma_s$")],
+                                   label=r"Wind-speed SD $\sigma_s$")],
                    frameon=False, loc="upper left", fontsize=6.2)
     fig.tight_layout(rect=(0, 0.06, 1, 1))
     _save(fig, out, "Fig3_two_level_recovery_multicase")
