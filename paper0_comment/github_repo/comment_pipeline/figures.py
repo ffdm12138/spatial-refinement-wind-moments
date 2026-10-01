@@ -126,8 +126,8 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
                 fontsize=7.8, color=col)
     ax.text(0.5, 0.31, r"$\Delta_{\rm total}=\Delta_{\rm mag}+J$  (exact identity)",
             transform=ax.transAxes, ha="center", fontsize=8.5)
-    ax.text(0.5, 0.12, "Intermediate state makes coarse\u2013aggregate\n"
-                       "consistency testable",
+    ax.text(0.5, 0.12, "Intermediate speed separates\n"
+                       "reference and averaging differences",
             transform=ax.transAxes, ha="center", va="center", fontsize=6.8,
             color="#64748B", style="italic")
 
