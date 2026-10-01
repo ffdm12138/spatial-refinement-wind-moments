@@ -362,7 +362,7 @@ def render_mechanism(mechs: list[dict], out, moments: dict | None = None,
 
     for _ax, _lab in zip(fig.axes,
                          ["a) Exact counterexamples", "b) Transverse relation",
-                          "c) Spearman rank correlation"]):
+                          "c) Spearman correlation"]):
         fig.text(_ax.get_position().x0, 0.965, _lab, ha="left", va="top",
                  fontsize=8.5, fontweight="bold")
 
