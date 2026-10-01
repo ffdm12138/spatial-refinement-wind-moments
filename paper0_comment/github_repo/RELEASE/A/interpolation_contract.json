@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "generated_at_utc": "2026-09-05T05:51:17Z",
+    "extension": "extension_multicase_20260905",
+    "case_status": "REAL",
+    "data_status": "REAL",
+    "science_eligible": true,
+    "contains_placeholder": false,
+    "dependency_status": "REAL",
+    "case": "A"
+  },
+  "contract_id": "npj-interpolation-baselines-v1 (multicase extension)",
+  "frozen_contract_sha256": "43d9a02a6ae65214f2379f22d6fe3b91a30fc86a4e491754bff159fc340ea801",
+  "case": "A",
+  "evaluation_slice": [
+    3650,
+    4320
+  ],
+  "n_states": 670,
+  "n_parent_cells": 36,
+  "n_cell_time_records": 24120,
+  "prediction_inputs": [
+    "U10_d02.pt",
+    "V10_d02.pt"
+  ],
+  "prediction_excludes": [
+    "d05",
+    "terrain",
+    "history",
+    "station"
+  ],
+  "prediction_complete_before_reference_load": true,
+  "representative_state": {
+    "selection_rule": "closest to median d02 domain-mean wind speed (1/36 sum of parent-vector magnitudes) over the 670 evaluation states; earliest tie",
+    "selection_uses": "d02 only",
+    "domain_mean_d02_speed_median": 1.7030351509174375,
+    "evaluation_relative_index": 305,
+    "global_tensor_index": 3955,
+    "domain_mean_d02_speed_at_selected": 1.7047635985934169,
+    "absolute_deviation_from_median": 0.00172844767597935
+  },
+  "constrained_max_component_residual": {
+    "bilinear": 6.217248937900877e-15,
+    "bicubic": 6.217248937900877e-15
+  },
+  "constrained_tolerance_m_s-1": 1e-06,
+  "known_limitation": "independent block offsets may introduce parent-boundary discontinuities",
+  "qa": {
+    "frozen_contract_sha256": "43d9a02a6ae65214f2379f22d6fe3b91a30fc86a4e491754bff159fc340ea801",
+    "prediction_complete_before_reference_load": true,
+    "bilinear_identity_max_abs": 2.220446049250313e-16,
+    "bilinear_J_min": 1.3284628781584651e-05,
+    "bicubic_identity_max_abs": 1.1102230246251565e-16,
+    "bicubic_J_min": 4.701970305820424e-05,
+    "bilinear_constrained_identity_max_abs": 1.1102230246251565e-16,
+    "bilinear_constrained_J_min": 1.0414428132488052e-05,
+    "bicubic_constrained_identity_max_abs": 1.1102230246251565e-16,
+    "bicubic_constrained_J_min": 4.747382716407955e-05
+  },
+  "synthetic_tests": {
+    "bilinear": {
+      "constant_max_abs_diff": 0.0,
+      "linear_in_hull_max_abs_diff": 5.474797002413823e-07,
+      "parent_centre_alignment_max_abs_diff": 0.0,
+      "edge_extension_max_abs_diff": 0.0
+    },
+    "bicubic": {
+      "constant_max_abs_diff": 1.6093254089355469e-06,
+      "linear_in_hull_max_abs_diff": 0.07689866219405772,
+      "parent_centre_alignment_max_abs_diff": 0.0,
+      "edge_extension_max_abs_diff": 0.047827720642089844
+    }
+  },
+  "status": "PASS"
+}

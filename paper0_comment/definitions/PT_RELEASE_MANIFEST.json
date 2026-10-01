@@ -1,0 +1,139 @@
+{
+  "release_id": 383156568,
+  "tag": "raw-data-multicase-v1",
+  "private": true,
+  "assets": [
+    {
+      "name": "HGT_d05_ebao20151201.pt",
+      "bytes": 106205,
+      "sha256": "fedf2dfdf360fc61dbdb0882d8e0c11a9089a5486a17bbfefe9d14bccbcb8d5b",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/HGT_d05_ebao20151201.pt"
+    },
+    {
+      "name": "HGT_d05_yakou20150924.pt",
+      "bytes": 106537,
+      "sha256": "f923d4263a57ac9e46ad2ed07bc7acceeaa8129caa95fc4cd74bf6f69c3e9246",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/HGT_d05_yakou20150924.pt"
+    },
+    {
+      "name": "HGT_d05_yakou20151201.pt",
+      "bytes": 106210,
+      "sha256": "3437a888a4120a04c4d1422762f44b1839f4f5bbcdd96e271dc5017915289638",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/HGT_d05_yakou20151201.pt"
+    },
+    {
+      "name": "raw_sha256_manifest_20260905.json",
+      "bytes": 4951,
+      "sha256": "8ada477d0f610edc294d30e75fbfba790b2034e41762e21a0cb151fefee6a347",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/raw_sha256_manifest_20260905.json"
+    },
+    {
+      "name": "T2_d02_ebao20151201.pt",
+      "bytes": 453497560,
+      "sha256": "7b2d8ea1599caaf61bf3df0b897465716d15f1a7168f24137fe4ecca25c32c01",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/T2_d02_ebao20151201.pt"
+    },
+    {
+      "name": "T2_d02_yakou20150924.pt",
+      "bytes": 453497826,
+      "sha256": "e9f4a05857eb96b23fcf209c1f890aa1da596ced7b789a347e75bc8a09871e5b",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/T2_d02_yakou20150924.pt"
+    },
+    {
+      "name": "T2_d02_yakou20151201.pt",
+      "bytes": 453497565,
+      "sha256": "9dd6a7b3ca1a630beaf84b80b1a177a6e65d830f13289b0674a6d06d05d3fcc5",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/T2_d02_yakou20151201.pt"
+    },
+    {
+      "name": "T2_d05_ebao20151201.pt",
+      "bytes": 453497560,
+      "sha256": "513d4045d800eaab48924832be801bfde1b30aeec01a5367cf8e7629c1bb064f",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/T2_d05_ebao20151201.pt"
+    },
+    {
+      "name": "T2_d05_yakou20150924.pt",
+      "bytes": 453497826,
+      "sha256": "9eab263e9f7dc9960399fdbe47ccf7e90eb1fb0f8bf19581d2b547dc6c0f3f0e",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/T2_d05_yakou20150924.pt"
+    },
+    {
+      "name": "T2_d05_yakou20151201.pt",
+      "bytes": 453497565,
+      "sha256": "c02bdbaf182d8c272fe1f45b5baea4fa919706c6c165b22a7468c96022eb0f06",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/T2_d05_yakou20151201.pt"
+    },
+    {
+      "name": "U10_d02_ebao20151201.pt",
+      "bytes": 453497565,
+      "sha256": "50494bb01bf26da66163c9da79818f1dea8890ea096139f2aa2371300b11cafe",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/U10_d02_ebao20151201.pt"
+    },
+    {
+      "name": "U10_d02_yakou20150924.pt",
+      "bytes": 453497897,
+      "sha256": "d005312b38e7bf250d07616308ffd4cb32248fb676e230f759c2d9ed9dc58ae4",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/U10_d02_yakou20150924.pt"
+    },
+    {
+      "name": "U10_d02_yakou20151201.pt",
+      "bytes": 453497570,
+      "sha256": "f599fa42c5e8223bb95eeacc265ebc914cb5682b7eb6257834588672a623c86e",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/U10_d02_yakou20151201.pt"
+    },
+    {
+      "name": "U10_d05_ebao20151201.pt",
+      "bytes": 453497565,
+      "sha256": "ac958c2fe0a9e6432e74dd75b6ccea8e8f5b1129172fa8e309a3236108ff0074",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/U10_d05_ebao20151201.pt"
+    },
+    {
+      "name": "U10_d05_yakou20150924.pt",
+      "bytes": 453497897,
+      "sha256": "f493c05799e77cc9be986e080b67938cf3d2d2a7cafa4abf47142ee77ffdc3df",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/U10_d05_yakou20150924.pt"
+    },
+    {
+      "name": "U10_d05_yakou20151201.pt",
+      "bytes": 453497570,
+      "sha256": "e461de527623299889c133094261ebb2e6ec12e731c50c57acb5d8388705ae95",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/U10_d05_yakou20151201.pt"
+    },
+    {
+      "name": "V10_d02_ebao20151201.pt",
+      "bytes": 453497565,
+      "sha256": "92ad5586bcb8adfb5c1e98e07ce5453267deaa4109a1cf6a33c5e39bd761a4ef",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/V10_d02_ebao20151201.pt"
+    },
+    {
+      "name": "V10_d02_yakou20150924.pt",
+      "bytes": 453497897,
+      "sha256": "cfaea3c9585192eb76f1f51d955f8bdf8d8dc5beb35a3278c2b0637e980ae45c",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/V10_d02_yakou20150924.pt"
+    },
+    {
+      "name": "V10_d02_yakou20151201.pt",
+      "bytes": 453497570,
+      "sha256": "ae3fa90f3bfcc6419b550804275ff62da8fa81e405fbc7fcd7daf7324162cc33",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/V10_d02_yakou20151201.pt"
+    },
+    {
+      "name": "V10_d05_ebao20151201.pt",
+      "bytes": 453497565,
+      "sha256": "e2fe64da058392950459df95aa40d68ec02c4b7e9557b24b45cec1f3fa5d38c3",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/V10_d05_ebao20151201.pt"
+    },
+    {
+      "name": "V10_d05_yakou20150924.pt",
+      "bytes": 453497897,
+      "sha256": "17e833968511f67af7787eda0220127faedc9be77202ed8fcc37ad5594aa93e4",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/V10_d05_yakou20150924.pt"
+    },
+    {
+      "name": "V10_d05_yakou20151201.pt",
+      "bytes": 453497570,
+      "sha256": "e6c32145b1db14f78f2c73f4b0d8f004b26f67082a5459fe2acb102ab2ac2620",
+      "url": "https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/download/raw-data-multicase-v1/V10_d05_yakou20151201.pt"
+    }
+  ]
+}

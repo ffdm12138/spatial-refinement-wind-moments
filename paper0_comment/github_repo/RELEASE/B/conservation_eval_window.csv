@@ -1,0 +1,5 @@
+method,l1_metric_rmse,l1_max_comp_resid,l1_pass
+bilinear,0.4543610333582409,,False
+bilinear_constrained,7.105427357601002e-15,7.105427357601002e-15,True
+bicubic,0.2559338875544536,,False
+bicubic_constrained,7.105427357601002e-15,7.105427357601002e-15,True

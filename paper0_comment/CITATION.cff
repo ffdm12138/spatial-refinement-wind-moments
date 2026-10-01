@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Please cite the associated Comment when available."
+title: "Three states for auditing reference consistency and subgrid recovery in wind downscaling"
+authors:
+  - family-names: Feng
+    given-names: Yuqi
+  - family-names: Huang
+    given-names: Ning
+  - family-names: Li
+    given-names: Guang
+type: software
+version: comment-revision-20261001
+license: MIT
+repository-code: "https://github.com/ffdm12138/spatial-refinement-wind-moments"

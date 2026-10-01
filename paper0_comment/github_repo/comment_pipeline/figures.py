@@ -104,7 +104,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
     # (a) schematic
     ax = fig.add_subplot(gs[0, 0])
     ax.axis("off")
-    ax.set_title("(a) Three-state accounting", loc="left", fontweight="bold")
+    ax.set_title("a) Three-state accounting", loc="left", fontweight="bold")
     bw = 0.26
     for name, formula, x in (
             ("native coarse", r"$S_c=|\mathbf{U}_c|$", 0.02),
@@ -133,7 +133,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
 
     # (b) decomposition dumbbells
     ax = fig.add_subplot(gs[0, 1])
-    ax.set_title("(b) Where the discrepancy comes from", loc="left",
+    ax.set_title("b) Where the discrepancy comes from", loc="left",
                  fontweight="bold")
     # Six groups: each case contributes its analysis-window and held-out means,
     # so the panel shows the same decomposition in both windows rather than
@@ -172,7 +172,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
 
     # (c) vector consistency vs gap
     ax = fig.add_subplot(gs[1, 0])
-    ax.set_title("(c) Resolved vector consistency vs the gap", loc="left",
+    ax.set_title("c) Resolved vector consistency vs the gap", loc="left",
                  fontweight="bold")
     xx = np.arange(len(df))
     w = 0.38
@@ -201,7 +201,7 @@ def render_panels(summary_rows: list[dict], out, moments: dict | None = None,
 
     # (d) Delta_total vs J over held-out cell-times
     ax = fig.add_subplot(gs[1, 1])
-    ax.set_title(r"(d) $\Delta_{\rm total}$ vs $J$ (held-out states)",
+    ax.set_title(r"d) $\Delta_{\rm total}$ vs $J$ (held-out states)",
                  loc="left", fontweight="bold")
     displayed = []
     n_points = 0
@@ -247,16 +247,16 @@ def render_mechanism(mechs: list[dict], out, moments: dict | None = None,
         predictors
     """
     mech = pd.DataFrame(mechs)
-    fig = plt.figure(figsize=(7.2, 2.95))
+    fig = plt.figure(figsize=(7.2, 3.35))
     gs = fig.add_gridspec(1, 3, width_ratios=[1.06, 1.0, 1.0], wspace=0.34,
                           left=0.055, right=0.985, top=0.86, bottom=0.155)
 
     # (a) exact counterexamples
     ax = fig.add_subplot(gs[0, 0])
     ax.axis("off")
-    ax.text(0.245, 0.90, "Opposing", ha="center", fontsize=6.4, fontweight="bold",
+    ax.text(0.245, 0.90, "Opposing", ha="center", fontsize=7.0, fontweight="bold",
             transform=ax.transAxes, color="#005b96")
-    ax.text(0.245, 0.815, "equal speeds", ha="center", fontsize=5.6,
+    ax.text(0.245, 0.815, "equal speeds", ha="center", fontsize=7.0,
             color="#555555", transform=ax.transAxes)
     fig.canvas.draw()
     bb = ax.get_window_extent()
@@ -274,9 +274,9 @@ def render_mechanism(mechs: list[dict], out, moments: dict | None = None,
     ax.text(0.245, 0.175, r"$J=1>0$" + "\n" + r"$\sigma_s=0$", ha="center",
             va="center", fontsize=7.0, color="#C2410C", transform=ax.transAxes,
             linespacing=1.30)
-    ax.text(0.755, 0.90, "Collinear", ha="center", fontsize=6.4,
+    ax.text(0.755, 0.90, "Collinear", ha="center", fontsize=7.0,
             fontweight="bold", transform=ax.transAxes, color="#6497b1")
-    ax.text(0.755, 0.815, "differing speeds", ha="center", fontsize=5.6,
+    ax.text(0.755, 0.815, "differing speeds", ha="center", fontsize=7.0,
             color="#555555", transform=ax.transAxes)
     for y_i, L_i in zip([0.665, 0.585, 0.505, 0.425],
                         [0.055, 0.095, 0.135, 0.175]):
@@ -286,15 +286,15 @@ def render_mechanism(mechs: list[dict], out, moments: dict | None = None,
     ax.text(0.755, 0.175, r"$J=0$" + "\n" + r"$\sigma_s>0$", ha="center",
             va="center", fontsize=7.0, color="#C2410C", transform=ax.transAxes,
             linespacing=1.30)
-    ax.text(0.5, 0.045, r"$\sigma_s$ is neither necessary nor sufficient for "
-                        r"nonzero $J$", ha="center", va="center", fontsize=5.5,
+    ax.text(0.5, 0.045, r"$\sigma_s$ is neither necessary nor sufficient" + "\n" +
+                        r"for nonzero $J$", ha="center", va="center", fontsize=7.0,
             style="italic", color="#334155", transform=ax.transAxes)
 
     # (b) J vs transverse predictor, with the real display subsample
     ax = fig.add_subplot(gs[0, 1])
     lim = (6e-5, 4.0)
     ax.plot(lim, lim, "--", color="#64748B", lw=0.8, zorder=2)
-    ax.text(1.15, 0.55, "$y=x$", fontsize=5.8, color="#64748B", rotation=45,
+    ax.text(1.15, 0.55, "$y=x$", fontsize=7.0, color="#64748B", rotation=45,
             ha="center", va="center")
     mk_case = {"A": "o", "B": "s", "C": "^"}
     n_plotted = 0
@@ -324,13 +324,13 @@ def render_mechanism(mechs: list[dict], out, moments: dict | None = None,
     ax.grid(True, which="major", ls=":", lw=0.5, color="#CBD5E1", alpha=0.7,
             zorder=1)
     ax.set_xlabel(r"$\sigma_\perp^2/(2\,S_v)\ (\mathrm{m\ s^{-1}})$",
-                  fontsize=7.2)
-    ax.set_ylabel(r"$J\ (\mathrm{m\ s^{-1}})$", fontsize=7.2)
+                  fontsize=8.5)
+    ax.set_ylabel(r"$J\ (\mathrm{m\ s^{-1}})$", fontsize=8.5)
     ax.xaxis.set_major_locator(FixedLocator([1e-4, 1e-3, 1e-2, 1e-1, 1e0]))
     ax.set_xticklabels([r"$10^{-4}$", r"$10^{-3}$", r"$10^{-2}$", r"$10^{-1}$",
-                        r"$10^{0}$"], fontsize=6.6)
+                        r"$10^{0}$"], fontsize=7.0)
     ax.xaxis.set_minor_formatter(NullFormatter())
-    leg = ax.legend(frameon=False, loc="lower right", fontsize=5.8, markerscale=2.4,
+    leg = ax.legend(frameon=False, loc="lower right", fontsize=7.0, markerscale=2.4,
                     handletextpad=0.25, borderaxespad=0.25, labelspacing=0.24)
     for h in leg.legend_handles:
         h.set_alpha(1.0)
@@ -347,22 +347,22 @@ def render_mechanism(mechs: list[dict], out, moments: dict | None = None,
                 zorder=3)
         for xi, v in zip(xx, y):
             ax.annotate(f"{v:.2f}", (xi, v), textcoords="offset points",
-                        xytext=(0, 6), ha="center", fontsize=5.4, color=color,
+                        xytext=(0, 6), ha="center", fontsize=7.0, color=color,
                         zorder=4)
     ax.set_xticks(xx, [CASE_LBL[c].split()[0] for c in mech["case"]])
     ax.set_box_aspect(1)
-    ax.set_ylabel(r"Spearman $\rho_s$ with $J$", fontsize=7.2)
+    ax.set_ylabel(r"Spearman $\rho_s$ with $J$", fontsize=8.5)
     ax.set_ylim(0, 1.22)
     ax.set_yticks([0.0, 0.2, 0.4, 0.6, 0.8, 1.0])
     ax.axhline(1.0, color="#64748B", lw=0.6, ls="--", zorder=2, alpha=0.8)
     ax.grid(axis="y", color="#E2E8F0", ls="-", lw=0.6, zorder=1)
     ax.set_axisbelow(True)
-    ax.legend(frameon=False, loc="lower center", fontsize=5.5, handlelength=1.5,
+    ax.legend(frameon=False, loc="lower center", fontsize=7.0, handlelength=1.5,
               handletextpad=0.35, labelspacing=0.20, borderaxespad=0.15)
 
     for _ax, _lab in zip(fig.axes,
-                         ["(a) Exact counterexamples", "(b) Transverse relation",
-                          "(c) Rank agreement"]):
+                         ["a) Exact counterexamples", "b) Transverse relation",
+                          "c) Rank agreement"]):
         fig.text(_ax.get_position().x0, 0.965, _lab, ha="left", va="top",
                  fontsize=8.5, fontweight="bold")
 
@@ -402,7 +402,7 @@ def render_recovery(rows: list[dict], out) -> None:
     axes[0].set_xticks(range(4)); axes[0].set_xticklabels(labels, fontsize=6.4)
     axes[0].set_xlim(-0.5, 3.5)
     axes[0].set_ylabel(r"Coarse-vector RMSE (m s$^{-1}$)")
-    axes[0].set_title("(a) Coarse-vector conservation", loc="left", fontweight="bold")
+    axes[0].set_title("a) Coarse-vector conservation", loc="left", fontweight="bold")
     axes[0].grid(axis="y", ls=":", lw=0.5, color="#E2E8F0")
 
     for i, mth in enumerate(methods):
@@ -416,7 +416,7 @@ def render_recovery(rows: list[dict], out) -> None:
     axes[1].set_xticks(range(4)); axes[1].set_xticklabels(labels, fontsize=6.4)
     axes[1].set_xlim(-0.5, 3.5); axes[1].set_ylim(0, 1.2)
     axes[1].set_ylabel(r"Recovery ratio $Q_M$")
-    axes[1].set_title("(b) Subgrid-statistic recovery", loc="left", fontweight="bold")
+    axes[1].set_title("b) Subgrid-statistic recovery", loc="left", fontweight="bold")
     axes[1].grid(axis="y", ls=":", lw=0.5, color="#E2E8F0")
     axes[1].legend(handles=[Line2D([], [], marker="o", color="#334155", ls="", ms=5,
                                    label=r"Aggregation gap $J$"),

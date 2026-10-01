@@ -1,0 +1,1190 @@
+{
+  "status": "PASS",
+  "contract": {
+    "cases": [
+      "A",
+      "B",
+      "C"
+    ],
+    "archive_states": 4320,
+    "excluded": [
+      0,
+      970
+    ],
+    "analysis": [
+      970,
+      3650
+    ],
+    "heldout": [
+      3650,
+      4320
+    ],
+    "coarse_cells": 36,
+    "fine_cells_per_coarse": 729,
+    "d02_km": 3.0,
+    "d05_km": 0.1111111111111111,
+    "ddof": 0,
+    "speed_mask": 1.0,
+    "l1_tolerance": 1e-06,
+    "anchors_conservation": {
+      "ordinary_lo": 0.2,
+      "ordinary_hi": 0.7,
+      "constrained_hi": 1e-13
+    },
+    "anchors_accounting": {
+      "A": [
+        0.2713,
+        1.014,
+        0.00832,
+        2.58,
+        0.0147
+      ],
+      "B": [
+        0.2253,
+        1.011,
+        0.01506,
+        6.34,
+        0.0026
+      ],
+      "C": [
+        0.229,
+        1.019,
+        0.00481,
+        1.38,
+        0.017
+      ]
+    },
+    "anchors_spearman": {
+      "A": [
+        0.95,
+        0.48
+      ],
+      "B": [
+        0.91,
+        0.56
+      ],
+      "C": [
+        0.84,
+        0.44
+      ]
+    },
+    "plot_subsample": 650,
+    "plot_seed": 20260906
+  },
+  "summary": [
+    {
+      "case": "A",
+      "n_states": 2680,
+      "dt_mean": 0.2712892410904411,
+      "dmag_mean": -0.003859520480999809,
+      "J_mean": 0.2751487615714409,
+      "J_abs_mean": 0.2751487615714409,
+      "J_over_dt": 1.0142265888078958,
+      "abs_dmag_max": 0.11346598942082498,
+      "identity_max_abs": 8.881784197001252e-16,
+      "E_vec_mean": 0.008323158904269837,
+      "E_vec_over_J": 0.02576195887002805,
+      "J_mean_eval": 0.3230794267726728,
+      "dt_mean_eval": 0.32227459192292285,
+      "dmag_mean_eval": -0.0008048348497499142,
+      "E_vec_over_J_eval_percent": 2.5761958870028048,
+      "dtheta_median_masked": 0.014672692298131671,
+      "mask_frac": 0.6947346600331675
+    },
+    {
+      "case": "B",
+      "n_states": 2680,
+      "dt_mean": 0.22525300102714035,
+      "dmag_mean": -0.002495378898779326,
+      "J_mean": 0.22774837992591968,
+      "J_abs_mean": 0.22774837992591968,
+      "J_over_dt": 1.0110781161067801,
+      "abs_dmag_max": 0.08856560447201467,
+      "identity_max_abs": 4.440892098500626e-16,
+      "E_vec_mean": 0.015063396033061022,
+      "E_vec_over_J": 0.06342395148716491,
+      "J_mean_eval": 0.23750327249965492,
+      "dt_mean_eval": 0.2309992315676128,
+      "dmag_mean_eval": -0.0065040409320420815,
+      "E_vec_over_J_eval_percent": 6.342395148716491,
+      "dtheta_median_masked": 0.0025919364665065734,
+      "mask_frac": 0.8339552238805971
+    },
+    {
+      "case": "C",
+      "n_states": 2680,
+      "dt_mean": 0.22899659226939303,
+      "dmag_mean": -0.004302339689503425,
+      "J_mean": 0.23329893195889642,
+      "J_abs_mean": 0.23329893195889642,
+      "J_over_dt": 1.0187877891407313,
+      "abs_dmag_max": 0.09279331894389564,
+      "identity_max_abs": 4.440892098500626e-16,
+      "E_vec_mean": 0.004812563011986906,
+      "E_vec_over_J": 0.013834456812768806,
+      "J_mean_eval": 0.3478678691269648,
+      "dt_mean_eval": 0.3450660278199966,
+      "dmag_mean_eval": -0.002801841306968131,
+      "E_vec_over_J_eval_percent": 1.3834456812768807,
+      "dtheta_median_masked": 0.016966911690872086,
+      "mask_frac": 0.6509121061359867
+    }
+  ],
+  "correlations": [
+    {
+      "case": "A",
+      "sp_J_perp": 0.9488028907980871,
+      "sp_J_par": 0.7023384586836687,
+      "sp_J_S": 0.4789567601950229,
+      "pe_J_perp": 0.8982468812033545,
+      "masked": true,
+      "n_samples": 94431,
+      "n_total": 120600
+    },
+    {
+      "case": "B",
+      "sp_J_perp": 0.9087960733201286,
+      "sp_J_par": 0.7891785013646043,
+      "sp_J_S": 0.557686413261863,
+      "pe_J_perp": 0.8379293491085679,
+      "masked": true,
+      "n_samples": 99082,
+      "n_total": 120600
+    },
+    {
+      "case": "C",
+      "sp_J_perp": 0.8364020957389593,
+      "sp_J_par": 0.6107091841749845,
+      "sp_J_S": 0.4410867914717203,
+      "pe_J_perp": 0.48764560112272926,
+      "masked": true,
+      "n_samples": 82269,
+      "n_total": 120600
+    }
+  ],
+  "checks": [
+    {
+      "name": "A: moments raw comparison key/shape/finite contract",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: moments archive reproduced from raw",
+      "value": 8.881784197001252e-16,
+      "expected": [
+        0.0,
+        1e-09
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: interpolation raw comparison key/shape/finite contract",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: interpolation archive reproduced from raw",
+      "value": 2.220446049250313e-16,
+      "expected": [
+        0.0,
+        1e-09
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: held-out conservation RMSE table matches raw",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: held-out max-component table matches raw",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: moments raw comparison key/shape/finite contract",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: moments archive reproduced from raw",
+      "value": 4.440892098500626e-16,
+      "expected": [
+        0.0,
+        1e-09
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: interpolation raw comparison key/shape/finite contract",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: interpolation archive reproduced from raw",
+      "value": 2.220446049250313e-16,
+      "expected": [
+        0.0,
+        1e-09
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: held-out conservation RMSE table matches raw",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: held-out max-component table matches raw",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: moments raw comparison key/shape/finite contract",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: moments archive reproduced from raw",
+      "value": 4.440892098500626e-16,
+      "expected": [
+        0.0,
+        1e-09
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: interpolation raw comparison key/shape/finite contract",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: interpolation archive reproduced from raw",
+      "value": 4.440892098500626e-16,
+      "expected": [
+        0.0,
+        1e-09
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: held-out conservation RMSE table matches raw",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: held-out max-component table matches raw",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: archive structurally valid and self-consistent",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: interpolation archive structurally valid",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: domain-mean d_total (m/s)",
+      "value": 0.271,
+      "expected": [
+        0.269,
+        0.273
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: J/d_total",
+      "value": 1.01,
+      "expected": [
+        1.0,
+        1.03
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: <E_vec> (m/s)",
+      "value": 0.00832,
+      "expected": [
+        0.00682,
+        0.009819999999999999
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: E_vec/J (%)",
+      "value": 2.6,
+      "expected": [
+        2.43,
+        2.73
+      ],
+      "strict_hi": false,
+      "unit": "%",
+      "pass": true
+    },
+    {
+      "name": "A: median d_theta (deg)",
+      "value": 0.0147,
+      "expected": [
+        0.0132,
+        0.0162
+      ],
+      "strict_hi": false,
+      "unit": "deg",
+      "pass": true
+    },
+    {
+      "name": "A: bilinear fails conservation",
+      "value": 0.4443907323430781,
+      "expected": [
+        1e-06,
+        Infinity
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: bilinear Q_J in (0, 0.5)",
+      "value": 0.09545832310077752,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: bilinear Q_sigma_s in (0, 0.5)",
+      "value": 0.3944586313794112,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: bilinear L1 in ordinary band",
+      "value": 0.4443907323430781,
+      "expected": [
+        0.2,
+        0.7
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: bicubic fails conservation",
+      "value": 0.25038981069641864,
+      "expected": [
+        1e-06,
+        Infinity
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: bicubic Q_J in (0, 0.5)",
+      "value": 0.15520561808471967,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: bicubic Q_sigma_s in (0, 0.5)",
+      "value": 0.48731225965318475,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: bicubic L1 in ordinary band",
+      "value": 0.25038981069641864,
+      "expected": [
+        0.2,
+        0.7
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: bilinear_constrained conserves coarse vector",
+      "value": 6.217248937900877e-15,
+      "expected": [
+        0.0,
+        1e-06
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: bilinear_constrained Q_J in (0, 0.5)",
+      "value": 0.11000664049934272,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: bilinear_constrained Q_sigma_s in (0, 0.5)",
+      "value": 0.3870548612962333,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: bilinear_constrained L1 within bound",
+      "value": 1.0092331035912142e-15,
+      "expected": [
+        0.0,
+        1e-13
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: bicubic_constrained conserves coarse vector",
+      "value": 6.217248937900877e-15,
+      "expected": [
+        0.0,
+        1e-06
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: bicubic_constrained Q_J in (0, 0.5)",
+      "value": 0.1688821336161064,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: bicubic_constrained Q_sigma_s in (0, 0.5)",
+      "value": 0.48112099433747546,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: bicubic_constrained L1 within bound",
+      "value": 9.956495183488922e-16,
+      "expected": [
+        0.0,
+        1e-13
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "A: Spearman J ~ transverse",
+      "value": 0.95,
+      "expected": [
+        0.945,
+        0.955
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "A: Spearman J ~ sigma_s",
+      "value": 0.48,
+      "expected": [
+        0.475,
+        0.485
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: archive structurally valid and self-consistent",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: interpolation archive structurally valid",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: domain-mean d_total (m/s)",
+      "value": 0.225,
+      "expected": [
+        0.223,
+        0.227
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: J/d_total",
+      "value": 1.01,
+      "expected": [
+        1.0,
+        1.03
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: <E_vec> (m/s)",
+      "value": 0.01506,
+      "expected": [
+        0.013560000000000001,
+        0.016560000000000002
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: E_vec/J (%)",
+      "value": 6.3,
+      "expected": [
+        6.1899999999999995,
+        6.49
+      ],
+      "strict_hi": false,
+      "unit": "%",
+      "pass": true
+    },
+    {
+      "name": "B: median d_theta (deg)",
+      "value": 0.0026,
+      "expected": [
+        0.0010999999999999998,
+        0.0040999999999999995
+      ],
+      "strict_hi": false,
+      "unit": "deg",
+      "pass": true
+    },
+    {
+      "name": "B: bilinear fails conservation",
+      "value": 0.4543610333582409,
+      "expected": [
+        1e-06,
+        Infinity
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: bilinear Q_J in (0, 0.5)",
+      "value": 0.0949978009970034,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: bilinear Q_sigma_s in (0, 0.5)",
+      "value": 0.3663058404359958,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: bilinear L1 in ordinary band",
+      "value": 0.4543610333582409,
+      "expected": [
+        0.2,
+        0.7
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: bicubic fails conservation",
+      "value": 0.2559338875544536,
+      "expected": [
+        1e-06,
+        Infinity
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: bicubic Q_J in (0, 0.5)",
+      "value": 0.16271814654183714,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: bicubic Q_sigma_s in (0, 0.5)",
+      "value": 0.4511029390874126,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: bicubic L1 in ordinary band",
+      "value": 0.2559338875544536,
+      "expected": [
+        0.2,
+        0.7
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: bilinear_constrained conserves coarse vector",
+      "value": 7.105427357601002e-15,
+      "expected": [
+        0.0,
+        1e-06
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: bilinear_constrained Q_J in (0, 0.5)",
+      "value": 0.12473435118347803,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: bilinear_constrained Q_sigma_s in (0, 0.5)",
+      "value": 0.35696437131982794,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: bilinear_constrained L1 within bound",
+      "value": 1.3555353187210831e-15,
+      "expected": [
+        0.0,
+        1e-13
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: bicubic_constrained conserves coarse vector",
+      "value": 7.105427357601002e-15,
+      "expected": [
+        0.0,
+        1e-06
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: bicubic_constrained Q_J in (0, 0.5)",
+      "value": 0.1847780013519279,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: bicubic_constrained Q_sigma_s in (0, 0.5)",
+      "value": 0.4459131857316159,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: bicubic_constrained L1 within bound",
+      "value": 1.3506387500225106e-15,
+      "expected": [
+        0.0,
+        1e-13
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "B: Spearman J ~ transverse",
+      "value": 0.91,
+      "expected": [
+        0.905,
+        0.915
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "B: Spearman J ~ sigma_s",
+      "value": 0.56,
+      "expected": [
+        0.555,
+        0.5650000000000001
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: archive structurally valid and self-consistent",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: interpolation archive structurally valid",
+      "value": true,
+      "expected": [
+        true,
+        true
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: domain-mean d_total (m/s)",
+      "value": 0.229,
+      "expected": [
+        0.227,
+        0.231
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: J/d_total",
+      "value": 1.02,
+      "expected": [
+        1.0,
+        1.03
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: <E_vec> (m/s)",
+      "value": 0.00481,
+      "expected": [
+        0.00331,
+        0.00631
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: E_vec/J (%)",
+      "value": 1.4,
+      "expected": [
+        1.23,
+        1.5299999999999998
+      ],
+      "strict_hi": false,
+      "unit": "%",
+      "pass": true
+    },
+    {
+      "name": "C: median d_theta (deg)",
+      "value": 0.017,
+      "expected": [
+        0.015500000000000002,
+        0.018500000000000003
+      ],
+      "strict_hi": false,
+      "unit": "deg",
+      "pass": true
+    },
+    {
+      "name": "C: bilinear fails conservation",
+      "value": 0.6372207703666857,
+      "expected": [
+        1e-06,
+        Infinity
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: bilinear Q_J in (0, 0.5)",
+      "value": 0.1534288720675523,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: bilinear Q_sigma_s in (0, 0.5)",
+      "value": 0.25395932277765737,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: bilinear L1 in ordinary band",
+      "value": 0.6372207703666857,
+      "expected": [
+        0.2,
+        0.7
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: bicubic fails conservation",
+      "value": 0.4005065019036166,
+      "expected": [
+        1e-06,
+        Infinity
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: bicubic Q_J in (0, 0.5)",
+      "value": 0.2735536149484829,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: bicubic Q_sigma_s in (0, 0.5)",
+      "value": 0.3028822124420137,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: bicubic L1 in ordinary band",
+      "value": 0.4005065019036166,
+      "expected": [
+        0.2,
+        0.7
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: bilinear_constrained conserves coarse vector",
+      "value": 1.0658141036401504e-14,
+      "expected": [
+        0.0,
+        1e-06
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: bilinear_constrained Q_J in (0, 0.5)",
+      "value": 0.16194693478020397,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: bilinear_constrained Q_sigma_s in (0, 0.5)",
+      "value": 0.24705015805602557,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: bilinear_constrained L1 within bound",
+      "value": 1.1340370839119182e-15,
+      "expected": [
+        0.0,
+        1e-13
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: bicubic_constrained conserves coarse vector",
+      "value": 8.881784197001252e-15,
+      "expected": [
+        0.0,
+        1e-06
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: bicubic_constrained Q_J in (0, 0.5)",
+      "value": 0.27914365030752314,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: bicubic_constrained Q_sigma_s in (0, 0.5)",
+      "value": 0.2978780741274122,
+      "expected": [
+        0.0,
+        0.5
+      ],
+      "strict_hi": true,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: bicubic_constrained L1 within bound",
+      "value": 1.15800560602803e-15,
+      "expected": [
+        0.0,
+        1e-13
+      ],
+      "strict_hi": false,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "C: Spearman J ~ transverse",
+      "value": 0.84,
+      "expected": [
+        0.835,
+        0.845
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "C: Spearman J ~ sigma_s",
+      "value": 0.44,
+      "expected": [
+        0.435,
+        0.445
+      ],
+      "strict_hi": false,
+      "unit": "",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+case,method,constrained,L1_available,L1_criterion,L1_status,L1_source,L1_max_comp_resid,L1_full_archive_max_comp,L1_metric_rmse,L1_pass,Q_J,Q_S,Q_delta,L2_J_recovered,L2_S_recovered
+A,bilinear,False,False,max_abs_component_residual,UNAVAILABLE,frozen_table,,,0.4443907323430781,False,0.09545832310077752,0.3944586313794112,-0.3080957084315837,False,False
+A,bicubic,False,False,max_abs_component_residual,UNAVAILABLE,frozen_table,,,0.25038981069641864,False,0.15520561808471967,0.48731225965318475,-0.027168264297081243,False,False
+A,bilinear_constrained,True,True,max_abs_component_residual,PASS,frozen_table,6.217248937900877e-15,6.217248937900877e-15,1.0092331035912142e-15,True,0.11000664049934272,0.3870548612962333,0.11028136640140504,False,False
+A,bicubic_constrained,True,True,max_abs_component_residual,PASS,frozen_table,6.217248937900877e-15,6.217248937900877e-15,9.956495183488922e-16,True,0.1688821336161064,0.48112099433747546,0.16930389266891713,False,False
+B,bilinear,False,False,max_abs_component_residual,UNAVAILABLE,frozen_table,,,0.4543610333582409,False,0.0949978009970034,0.3663058404359958,-0.28732447515579723,False,False
+B,bicubic,False,False,max_abs_component_residual,UNAVAILABLE,frozen_table,,,0.2559338875544536,False,0.16271814654183714,0.4511029390874126,0.00644519889301447,False,False
+B,bilinear_constrained,True,True,max_abs_component_residual,PASS,frozen_table,7.105427357601002e-15,1.0658141036401503e-14,1.3555353187210831e-15,True,0.12473435118347803,0.35696437131982794,0.12824638592153123,False,False
+B,bicubic_constrained,True,True,max_abs_component_residual,PASS,frozen_table,7.105427357601002e-15,1.0658141036401503e-14,1.3506387500225106e-15,True,0.1847780013519279,0.4459131857316159,0.18998063200995297,False,False
+C,bilinear,False,False,max_abs_component_residual,UNAVAILABLE,frozen_table,,,0.6372207703666857,False,0.1534288720675523,0.25395932277765737,-0.5033042594872456,False,False
+C,bicubic,False,False,max_abs_component_residual,UNAVAILABLE,frozen_table,,,0.4005065019036166,False,0.2735536149484829,0.3028822124420137,-0.08997174029554929,False,False
+C,bilinear_constrained,True,True,max_abs_component_residual,PASS,frozen_table,1.0658141036401504e-14,1.4210854715202004e-14,1.1340370839119182e-15,True,0.16194693478020397,0.24705015805602557,0.16326189938066227,False,False
+C,bicubic_constrained,True,True,max_abs_component_residual,PASS,frozen_table,8.881784197001252e-15,1.7763568394002505e-14,1.15800560602803e-15,True,0.27914365030752314,0.2978780741274122,0.2814102200273841,False,False
