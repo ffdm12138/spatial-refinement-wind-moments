@@ -377,7 +377,7 @@ def render_recovery(rows: list[dict], out) -> None:
     df = pd.DataFrame(rows)
     methods = ["bilinear", "bicubic", "bilinear_constrained", "bicubic_constrained"]
     labels = ["Ordinary\nbilinear", "Ordinary\nbicubic",
-              "Mean-preserving\nbilinear", "Mean-preserving\nbicubic"]
+              "Mean\npreserving\nbilinear", "Mean\npreserving\nbicubic"]
     off = {"A": -0.15, "B": 0.0, "C": 0.15}
 
     fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.05))
