@@ -1,0 +1,43 @@
+{
+  "source": "all3350 complete run, 2026-10-20; original mode >=4,<6 equals new >4,<6 on every observed state",
+  "window": [
+    970,
+    4320
+  ],
+  "conditional_group": "4 < Sc < 6 m/s",
+  "cases": {
+    "A": {
+      "n": 19969,
+      "S_c_exact4_count": 0,
+      "S_c_exact6_count": 0,
+      "CDF_D": 0.04501266981299598,
+      "SD_ratio": 0.9999041522409411,
+      "G3": 0.01816192550144341,
+      "L3": 0.03304008631498623,
+      "variance_scale27": 0.39212277179447913,
+      "permutation_D2x_amplification": 18.536550140729567
+    },
+    "B": {
+      "n": 33213,
+      "S_c_exact4_count": 0,
+      "S_c_exact6_count": 0,
+      "CDF_D": 0.046402396248144656,
+      "SD_ratio": 0.981159007139862,
+      "G3": 0.011396635639154041,
+      "L3": 0.03641394890091557,
+      "variance_scale27": 0.4180614286403305,
+      "permutation_D2x_amplification": 17.233976152134474
+    },
+    "C": {
+      "n": 11454,
+      "S_c_exact4_count": 0,
+      "S_c_exact6_count": 0,
+      "CDF_D": 0.20026361624175706,
+      "SD_ratio": 0.5437715995033026,
+      "G3": 0.13297540331999835,
+      "L3": 0.11055673433016935,
+      "variance_scale27": 0.5393052112519597,
+      "permutation_D2x_amplification": 44.97999548280932
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Paper0 Comment reproduction
 
+**Current 3,350-time Comment revision:** use [full3350/README.md](full3350/README.md) and [full3350/reproduce.py](full3350/reproduce.py). The historical steps below refer to the earlier 670-time evaluation and must not be used to label full-period statistics. The existing data releases are retained without re-upload.
+
 Three states for auditing reference consistency and subgrid recovery in wind downscaling
 
 This repository contains the Paper0 Comment code, fixed case/window definitions,

@@ -1,5 +1,7 @@
 # Paper0 Comment reproduction
 
+**Current 3,350-time Comment revision (2026-10-20):** see [full-3350 post-processing code](paper0_comment/full3350/README.md). It reproduces the current manuscript's figures, moment diagnostics, interpolation and fixed-model transfer example from the existing raw-data release. The historical commands and 670-time evaluation described below apply **only to the earlier version**, not to the current manuscript. The repository remains private during revision and is intended to become public on submission.
+
 Three states for auditing reference consistency and subgrid recovery in wind downscaling
 
 This repository contains the Paper0 Comment code, fixed case/window definitions,
