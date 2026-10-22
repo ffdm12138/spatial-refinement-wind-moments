@@ -132,7 +132,9 @@ have already been seen during prior model development.
 The repository is **published for the 2026-10-23 Comment revision**. The original
 `raw-data-multicase-v1` release and its checksums have not been re-uploaded,
 deleted or modified. The new [final submission release](https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/tag/comment-full3350-20261023)
-contains final figure layouts, supplementary diagnostics and six full-period
-reference/prediction arrays, with SHA256 checksums. See
+contains final figure layouts and supplementary diagnostics with SHA256
+checksums. The six reference/prediction arrays can be regenerated from raw
+PT tensors; their SHA256 values are recorded in the diagnostic results, but
+they are not duplicated as final-Release assets. See
 [`submission_diagnostics/README.md`](submission_diagnostics/README.md).
 The software is MIT licensed; original WRF data retain their existing terms.
