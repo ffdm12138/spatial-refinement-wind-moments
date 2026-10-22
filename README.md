@@ -1,13 +1,11 @@
 # Paper0 Comment reproduction
 
-**Current 3,350-time Comment revision (2026-10-20):** see [full-3350 post-processing code](paper0_comment/full3350/README.md). It reproduces the current manuscript's figures, moment diagnostics, interpolation and fixed-model transfer example from the existing raw-data release. The historical commands and 670-time evaluation described below apply **only to the earlier version**, not to the current manuscript. The repository remains private during revision and is intended to become public on submission.
+**Current Comment revision (2026-10-23):** see the [full-3350 numerical replay](paper0_comment/full3350/README.md) and its [final submission figures, exact numerical tables and SI6 diagnostics](paper0_comment/full3350/submission_diagnostics/README.md). Original source data are in [raw-data-multicase-v1](https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/tag/raw-data-multicase-v1); final derived assets and six reference/prediction arrays are in [comment-full3350-20261023](https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/tag/comment-full3350-20261023). This public deposit distinguishes the final 3,350-time manuscript from the **historical 670-time workflow described below**, which must not be used as current manuscript evidence.
 
 Three states for auditing reference consistency and subgrid recovery in wind downscaling
 
 This repository contains the Paper0 Comment code, fixed case/window definitions,
-figure-source tables and validation summaries; the unchanged diagnostic archives accompany the private Comment Release. The repository
-and its existing PT data Release are private during manuscript revision. Access
-can be arranged through the corresponding author, Guang Li (lg@lzu.edu.cn).
+figure-source tables and validation summaries. The older diagnostic archives are preserved in the historical Comment Release; see the current full3350 path above for the submitted figures and results. The source WRF PT data remain in their original dated Release.
 
 ## Reproduce the Comment
 
@@ -19,7 +17,7 @@ python install_diagnostics.py --input downloaded_diagnostics
 python reproduce_comment.py --data RELEASE --figures --out outputs --json outputs/verification.json
 ```
 
-The six diagnostic archives are installed from the private Comment Release,
+The six *historical* diagnostic archives are installed from the earlier Comment Release,
 with sizes and SHA256 checked before copying. The conservation tables are included in Git. It generates the three Comment figures and verifies their statistics.
 
 ## Replay from the deposited PT products

@@ -1,0 +1,129 @@
+{
+  "schema": "npj.comment.revision_diagnostics/v1",
+  "window": [
+    970,
+    4320
+  ],
+  "times_per_case": 3350,
+  "cells_per_case": 36,
+  "cell_order": "c=6*row+column; zero-based",
+  "native_anchor_bound": "mean(abs(mu_hat-Ss)) >= mean(max(Sc-Ss,0)) for any mu_hat>=Sc; not an error attribution",
+  "cell_ratio": "mean_t(predicted_SD)/mean_t(reference_SD)",
+  "pooled_ratio": "mean_tc(predicted_SD)/mean_tc(reference_SD); reference-amplitude-weighted cell ratios",
+  "top6_definition": "Six largest time-mean absolute SD errors, separately selected within each case; descriptive, not a holdout",
+  "array_partition": "16 central cells vs 20 perimeter cells in the 6x6 analysis array; not an authenticated WRF boundary",
+  "bands": "Strict overlapping bands fixed in the preceding review; post-hoc descriptive sensitivity, no independent inference",
+  "new_model_fits": 0,
+  "input_sources": {
+    "A_reference.npz": {
+      "sha256": "7b2625a031c5a604509149818490f65bf111f06cf359e0425def9b09938bace3",
+      "bytes": 20326257
+    },
+    "A_prediction.npz": {
+      "sha256": "f0ed0f2e5ae430588a0dd612379237810b9a8d5bf15c79bd7612c46e06ccee78",
+      "bytes": 9100425
+    },
+    "B_reference.npz": {
+      "sha256": "b9ff2c2d7b8e8320f6872ce00234070c3f4b36414a0c1784fb1fef2ed4da8e91",
+      "bytes": 20226129
+    },
+    "B_prediction.npz": {
+      "sha256": "cacfb2c84f87b92c01385a226f25ae98bfcb340895cb3e987a7f7941e5a729ec",
+      "bytes": 9064072
+    },
+    "C_reference.npz": {
+      "sha256": "60d1ab6b2e7fe32dc1f47bb8424125fdcac2be47a6d3c51494d1035db0eb8281",
+      "bytes": 20318322
+    },
+    "C_prediction.npz": {
+      "sha256": "6184a1d9d8842267bd81c53d43bbbd79fa16640137ac1137125ec595ac1717ac",
+      "bytes": 9111521
+    }
+  },
+  "cases": {
+    "A": {
+      "cell_times": 120600,
+      "native_anchor": {
+        "Ss_below_Sc_count": 2346,
+        "fraction": 0.01945273631840796,
+        "min_Ss_minus_Sc_mps": -0.0731839247421382,
+        "MAE_lower_bound_mps": 0.00021596722083599344
+      },
+      "spread": {
+        "pooled_ratio": 0.9999041522409411,
+        "median_cell_ratio": 0.9948826417092345,
+        "min_cell_ratio": 0.8171139192802825,
+        "max_cell_ratio": 1.3497489241028235,
+        "inner16_pooled_ratio": 0.9689469056605313,
+        "perimeter20_pooled_ratio": 1.0275599023412925,
+        "highest_error6_share": 0.2664053781264375,
+        "highest_error6_cells": [
+          28,
+          31,
+          30,
+          24,
+          34,
+          29
+        ],
+        "highest_error6_perimeter_count": 5,
+        "SD_MAE_mps": 0.2529349533063727
+      }
+    },
+    "B": {
+      "cell_times": 120600,
+      "native_anchor": {
+        "Ss_below_Sc_count": 2256,
+        "fraction": 0.018706467661691543,
+        "min_Ss_minus_Sc_mps": -0.038686896471186394,
+        "MAE_lower_bound_mps": 0.00018790804760802506
+      },
+      "spread": {
+        "pooled_ratio": 0.981159007139862,
+        "median_cell_ratio": 1.0488433688680068,
+        "min_cell_ratio": 0.6844995293440626,
+        "max_cell_ratio": 1.388048808361523,
+        "inner16_pooled_ratio": 0.9729423886455486,
+        "perimeter20_pooled_ratio": 0.9879519958212916,
+        "highest_error6_share": 0.28462324246701765,
+        "highest_error6_cells": [
+          24,
+          25,
+          31,
+          30,
+          33,
+          17
+        ],
+        "highest_error6_perimeter_count": 5,
+        "SD_MAE_mps": 0.30490378544839003
+      }
+    },
+    "C": {
+      "cell_times": 120600,
+      "native_anchor": {
+        "Ss_below_Sc_count": 0,
+        "fraction": 0.0,
+        "min_Ss_minus_Sc_mps": 0.00258340103564092,
+        "MAE_lower_bound_mps": 0.0
+      },
+      "spread": {
+        "pooled_ratio": 0.5437715995033026,
+        "median_cell_ratio": 0.8402518433684047,
+        "min_cell_ratio": 0.24319722800232196,
+        "max_cell_ratio": 1.3734324126376736,
+        "inner16_pooled_ratio": 0.7899544850741739,
+        "perimeter20_pooled_ratio": 0.4672036859469493,
+        "highest_error6_share": 0.6376692439275687,
+        "highest_error6_cells": [
+          0,
+          6,
+          29,
+          1,
+          23,
+          7
+        ],
+        "highest_error6_perimeter_count": 5,
+        "SD_MAE_mps": 0.9716963244439647
+      }
+    }
+  }
+}

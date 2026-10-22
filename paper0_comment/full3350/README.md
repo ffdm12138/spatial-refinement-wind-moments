@@ -129,9 +129,10 @@ have already been seen during prior model development.
 
 ## Availability and licensing
 
-The repository **remains private during preparation of the revision**.
-The authors intend to make it public upon manuscript submission; existing
-release materials are not being re-uploaded or deleted in this change.
-Until that visibility change, readers without repository access cannot retrieve
-the sources or the releases. GitHub repository contents are licensed under
-the root MIT `LICENSE`; original WRF data retain their existing terms.
+The repository is **published for the 2026-10-23 Comment revision**. The original
+`raw-data-multicase-v1` release and its checksums have not been re-uploaded,
+deleted or modified. The new [final submission release](https://github.com/ffdm12138/spatial-refinement-wind-moments/releases/tag/comment-full3350-20261023)
+contains final figure layouts, supplementary diagnostics and six full-period
+reference/prediction arrays, with SHA256 checksums. See
+[`submission_diagnostics/README.md`](submission_diagnostics/README.md).
+The software is MIT licensed; original WRF data retain their existing terms.

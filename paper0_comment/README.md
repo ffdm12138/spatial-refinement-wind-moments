@@ -5,9 +5,7 @@
 Three states for auditing reference consistency and subgrid recovery in wind downscaling
 
 This repository contains the Paper0 Comment code, fixed case/window definitions,
-figure-source tables and validation summaries; the unchanged diagnostic archives accompany the private Comment Release. The repository
-and its existing PT data Release are private during manuscript revision. Access
-can be arranged through the corresponding author, Guang Li (lg@lzu.edu.cn).
+figure-source tables and validation summaries; the historical diagnostic archives are preserved in the original dated Release. This page describes the earlier 670-time workflow. For the current 3,350-time submission, use [full3350](full3350/README.md) and [submission diagnostics](full3350/submission_diagnostics/README.md).
 
 ## Reproduce the Comment
 
@@ -19,7 +17,7 @@ python install_diagnostics.py --input downloaded_diagnostics
 python reproduce_comment.py --data RELEASE --figures --out outputs --json outputs/verification.json
 ```
 
-The six diagnostic archives are installed from the private Comment Release,
+The six historical diagnostic archives are installed from the earlier Comment Release,
 with sizes and SHA256 checked before copying. The conservation tables are included in Git. It generates the three Comment figures and verifies their statistics.
 
 ## Replay from the deposited PT products

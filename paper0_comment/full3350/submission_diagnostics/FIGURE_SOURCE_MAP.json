@@ -1,0 +1,45 @@
+{
+  "schema": "npj.comment.figure_source/v2",
+  "window": [
+    970,
+    4320
+  ],
+  "times_per_case": 3350,
+  "cells": 36,
+  "analysis_commit": "40ac8ba02c84e8ada78a964c534a9e9b45787d69",
+  "results_file": "FULL3350_RESULTS.json",
+  "results_sha256": "6f776edc424f652b2a2aca5edcbdf5666083dba9461221058c97214d51430b2b",
+  "layout_script": "plot_submission_figures.py",
+  "layout_script_sha256": "73ece4637b59656bd1a43901215378ba8878163a33e2fa6f6dee5470519f8b8d",
+  "layout_changes_only": true,
+  "figures": [
+    {
+      "file": "Fig1_variance_budget.pdf",
+      "bytes": 19466,
+      "sha256": "ebc9d9fa823f49a743d69e028536b4a7edafc67ed012120d6e69304adf5dbb36"
+    },
+    {
+      "file": "Fig2_target_moments.pdf",
+      "bytes": 20707,
+      "sha256": "49ceabd86a5f6034c06d385c18ac0eb1e834410c9ceae6b02aac1fb47380cca8"
+    },
+    {
+      "file": "Fig3_mean_and_structure.pdf",
+      "bytes": 22218,
+      "sha256": "55d7e95101afd90fadfd03f10d1f719fdeb59acdbb64e208906823b5741c0215"
+    },
+    {
+      "file": "Fig4_transfer_diagnostic.pdf",
+      "bytes": 19475,
+      "sha256": "582f0b2b80015e5b97ad0747eef087004cef1207d889d23a9bebc07bbde07701"
+    },
+    {
+      "file": "FigS1_temporal_variability.pdf",
+      "bytes": 21147,
+      "sha256": "20ed8c82fb1c176cb267ee1df88537f42272dae10f16f742a2720652392da1ef"
+    }
+  ],
+  "conditional_panel": "Fig4c: strict 4<Sc<6 m/s; descriptive common-speed comparison",
+  "FigS1_source": "Unmodified temporal plot from the full-period analysis deposition",
+  "figure3a_axis_revision": "y range 1e-16 to 1e-2 m/s; tolerance and data unchanged; legend clearance verified"
+}
